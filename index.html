@@ -419,7 +419,7 @@
                         { text: 'Take a deep breath and focus.', effects: { mentalHealth: 5, academic: 5 }, popup: { type: 'positive', header: 'Good Coping!', why: 'You managed your initial stress and focused on the task.', bigPicture: 'Mindfulness techniques, like deep breathing, are proven to help manage anxiety.', reward: 'Boost to Mental and Academic stats.' } },
                     ]
                 },
-                { speaker: 'Alex', text: 'Hey, I\'m so lost on this history homework. Can you help me out?', sprite: sprites.alex_neutral, bg: backgrounds.library },
+                { speaker: 'Alex', text: 'Hey, I\'m so lost on this history homework. Can you help me out?', bg: backgrounds.library },
                 {
                     speaker: 'Charlie', text: 'I have my own stuff to do, but...',
                     choices: [
@@ -427,7 +427,7 @@
                         { text: 'Politely say you\'re busy.', effects: { academic: 5 }, popup: { type: 'positive', header: 'Setting Boundaries', why: 'You prioritized your own responsibilities, which is an important skill.', bigPicture: 'It\'s okay to say no. Protecting your own time and energy is not selfish.', reward: 'A boost to your Academic stat.'} },
                     ]
                 },
-                { speaker: 'Alex', text: 'Thanks for the help! Hey, there\'s a party at Maya\'s house tonight. You should come!', sprite: sprites.alex_neutral, bg: backgrounds.library },
+                { speaker: 'Alex', text: 'Thanks for the help! Hey, there\'s a party at Maya\'s house tonight. You should come!', bg: backgrounds.library },
                 {
                     speaker: 'Charlie', text: 'A party? I don\'t know...',
                     choices: [
@@ -454,7 +454,7 @@
                 }
             },
             eveningEvent: [
-                { speaker: 'Alex', text: 'Glad you came! The vibe is pretty chill.', bg: backgrounds.party, sprite: sprites.alex_neutral },
+                { speaker: 'Alex', text: 'Glad you came! The vibe is pretty chill.', bg: backgrounds.party },
                 {
                     speaker: 'Charlie', text: 'It\'s... loud. I don\'t know anyone.',
                     choices: [
@@ -462,7 +462,7 @@
                         { text: 'Go explore on your own.', effects: { mentalHealth: 5 }, popup: { type: 'positive', header: 'Feeling Brave!', why: 'You chose to step out of your comfort zone and be independent.', bigPicture: 'Building self-reliance is an important part of growing up.', reward: '+5 Mental Health.'} },
                     ]
                 },
-                { speaker: 'Alex', text: 'I\'m gonna grab a drink. You want some "punch"?', sprite: sprites.alex_neutral },
+                { speaker: 'Alex', text: 'I\'m gonna grab a drink. You want some "punch"?' },
                 {
                     speaker: 'Narrator', text: 'The "punch" smells suspiciously like cheap beer.',
                     choices: [
@@ -489,16 +489,13 @@
             ],
             backHome: {
                 speaker: 'Mom', sprite: sprites.mom_concerned, bg: backgrounds.livingroom, lowStatThreshold: 40,
-                // Dialogue for if Charlie went to the party
                 dialogue: "You're home. How was your night?",
                 choices: {
                     positive: { text: "It was fine. I got home on time like I promised.", effects: { familySocial: 10 } },
                     neutral: { text: "It was just a party. Nothing happened.", effects: { familySocial: -5 } },
                     negative: { text: "Why are you always waiting up for me?", effects: { familySocial: -15, mentalHealth: -5 } }
                 },
-                // Dialogue for if Charlie was grounded
                 groundedDialogue: "You're grounded, remember? No party tonight. We need to talk about your choices.",
-                // Dialogue for if Charlie stayed home
                 stayedInDialogue: "How was your evening, honey?",
                 stayedInChoices: {
                     positive: { text: "It was quiet. I just got some homework done.", effects: { familySocial: 5, academic: 5 } },
@@ -518,7 +515,7 @@
                         { text: 'Study for a few hours, then get a decent sleep.', effects: { academic: 10, physicalHealth: 5, mentalHealth: 5 }, popup: { type: 'positive', header: 'Smart Strategy', why: 'You balanced your need to study with your need for rest.', bigPicture: 'Good sleep is essential for academic performance and mental health.', reward: 'Boosts across the board.'} },
                     ]
                 },
-                { speaker: 'Classmate', text: 'Stressed? I\'ve got something that\'ll help you focus. My brother\'s "study pills". Want one?', sprite: sprites.alex_neutral }, // Using Alex as placeholder
+                { speaker: 'Classmate', text: 'Stressed? I\'ve got something that\'ll help you focus. My brother\'s "study pills". Want one?'},
                 {
                     speaker: 'Narrator', text: 'The offer is tempting. You\'re exhausted and desperate.', sprite: sprites.charlie_stressed,
                     choices: [
@@ -548,7 +545,7 @@
                         { text: 'Mind your own business.', effects: { academic: -5 }, popup: { type: 'positive', header: 'Staying Focused', why: 'You decided to focus on your own test and not get involved in drama.', bigPicture: 'Choosing not to engage is a valid strategy when you don\'t have all the information.', reward: 'No stat penalties.'} },
                     ]
                 },
-                { speaker: 'Narrator', text: 'After your last midterm, Alex texts you: "Party to celebrate being done! You in?"', sprite: sprites.charlie_neutral },
+                { speaker: 'Narrator', text: 'After your last midterm, Alex texts you: "Party to celebrate being done! You in?"' },
                 {
                     speaker: 'Charlie', text: 'I\'m so tired, but I don\'t want to miss out.',
                     choices: [
@@ -613,7 +610,7 @@
                         { text: 'Shrug. "Does it matter? I\'ll just find something."', effects: { peerSocial: -10 }, popup: { type: 'negative', header: 'Heads-Up: Dismissing a Friend', why: 'Your lack of interest might have come across as dismissive of something your friend was excited about.', bigPicture: 'Being a good friend sometimes means showing interest in their interests.', betterWay: 'Even if you don\'t care, you can say, "I haven\'t thought about it, but what are you thinking of wearing?"'} },
                     ]
                 },
-                { speaker: 'Narrator', text: 'You see someone in the hall who looks like they don\'t have anyone to go to the dance with. They look pretty down.', bg: backgrounds.hallway, sprite: sprites.charlie_sad },
+                { speaker: 'Narrator', text: 'You see someone in the hall who looks like they don\'t have anyone to go to the dance with. They look pretty down.', sprite: sprites.charlie_sad },
                 {
                     speaker: 'Charlie', text: 'They seem lonely.',
                     choices: [
@@ -632,8 +629,8 @@
                 }
             },
             eveningEvent: [
-                { speaker: 'Narrator', text: 'It\'s homecoming night! You arrive at the pre-dance party with Alex.', bg: backgrounds.party, sprite: sprites.charlie_homecoming },
-                { speaker: 'Alex', text: 'Looks pretty fun! I\'m glad we decided to come.', sprite: sprites.alex_homecoming },
+                { speaker: 'Narrator', text: 'It\'s homecoming night! You arrive at the pre-dance party with Alex.', bg: backgrounds.party },
+                { speaker: 'Alex', text: 'Looks pretty fun! I\'m glad we decided to come.' },
                 {
                     speaker: 'Charlie', text: 'Everyone else is drinking. They say it\'ll make dancing less awkward.',
                     choices: [
@@ -641,8 +638,8 @@
                         { text: 'Stick to soda.', effects: { mentalHealth: 10, physicalHealth: 5 }, alexEffect: 1, popup: { type: 'positive', header: 'Clear-Headed Choice', why: 'You decided you don\'t need a substance to have a good time.', bigPicture: 'Making a conscious choice to stay sober allows you to be fully present and in control of your actions.', reward: 'Boosts to health stats.'} },
                     ]
                 },
-                { speaker: 'Narrator', text: 'You arrive at the dance. The gym is decorated and buzzing with energy.', bg: backgrounds.gym_decorated, sprite: sprites.charlie_homecoming },
-                { speaker: 'Alex', text: 'Wow, this actually looks amazing! I\'m glad we came.', sprite: sprites.alex_homecoming },
+                { speaker: 'Narrator', text: 'You arrive at the dance. The gym is decorated and buzzing with energy.', bg: backgrounds.gym_decorated },
+                { speaker: 'Alex', text: 'Wow, this actually looks amazing! I\'m glad we came.' },
                 {
                     speaker: 'Narrator', text: 'A slow song comes on.',
                     choices: [
@@ -660,7 +657,7 @@
                         { text: 'Go hide in the bathroom until it\'s over.', effects: { mentalHealth: -10 }, popup: { type: 'negative', header: 'Flight Response', why: 'Your anxiety took over and you ran from the situation.', bigPicture: 'Avoiding things that make us anxious only makes the anxiety stronger next time.', betterWay: 'Take a deep breath. Remember that most people feel awkward, and it\'s okay.'} },
                     ]
                 },
-                { speaker: 'Narrator', text: 'You see a friend sitting alone in the bleachers, looking upset.', sprite: sprites.charlie_homecoming },
+                { speaker: 'Narrator', text: 'You see a friend sitting alone in the bleachers, looking upset.' },
                 {
                     speaker: 'Charlie', text: 'They look like they could use a friend.',
                     choices: [
@@ -668,7 +665,7 @@
                         { text: 'Leave them alone. It\'s not your problem.', effects: { peerSocial: -5 }, popup: { type: 'negative', header: 'Missed Connection', why: 'You chose not to get involved with someone else\'s problem.', bigPicture: 'A strong community is built on people being there for each other. You might need someone to do the same for you one day.', betterWay: 'Even a simple "Hey, are you okay?" can make a huge difference.'} },
                     ]
                 },
-                { speaker: 'Narrator', text: 'The dance is ending. Someone shouts "Afterparty at my place! My parents aren\'t home!"', sprite: sprites.charlie_homecoming },
+                { speaker: 'Narrator', text: 'The dance is ending. Someone shouts "Afterparty at my place! My parents aren\'t home!"' },
                 {
                     speaker: 'Charlie', text: 'My curfew is in thirty minutes...',
                     choices: [
@@ -678,7 +675,7 @@
                 }
             ],
             afterpartyEvent: [
-                { speaker: 'Narrator', text: 'The afterparty is even more crowded than the pre-party. The music is blasting.', bg: backgrounds.party, sprite: sprites.charlie_homecoming },
+                { speaker: 'Narrator', text: 'The afterparty is even more crowded than the pre-party. The music is blasting.', bg: backgrounds.party },
                 {
                     speaker: 'Alex', text: 'They\'re playing a drinking game. We should join!',
                     choices: [
@@ -686,7 +683,7 @@
                         { text: 'Decline. "No thanks, I\'m just gonna hang out."', effects: { mentalHealth: 10 }, alexEffect: 1, popup: { type: 'positive', header: 'Smart Choice', why: 'You avoided a high-risk situation and set a positive example.', bigPicture: 'You don\'t have to drink to have fun or fit in at a party.', reward: '+10 Mental Health.'} },
                     ]
                 },
-                { speaker: 'Narrator', text: 'An hour later, you see the person from the bleachers looking very sick in the corner.', sprite: sprites.charlie_homecoming },
+                { speaker: 'Narrator', text: 'An hour later, you see the person from the bleachers looking very sick in the corner.' },
                 {
                     speaker: 'Charlie', text: 'They drank way too much.',
                     choices: [
@@ -694,7 +691,7 @@
                         { text: 'Pretend you don\'t see them.', effects: { mentalHealth: -15, peerSocial: -10 }, popup: { type: 'negative', header: 'Heads-Up: Ignoring a Problem', why: 'You ignored someone who was clearly in need of help.', bigPicture: 'If someone is showing signs of alcohol poisoning, getting them help is critical. Ignoring it could have serious consequences for them.', betterWay: 'Always tell a trusted adult or find their friends if someone seems dangerously intoxicated.'} },
                     ]
                 },
-                { speaker: 'Narrator', text: 'It\'s now 2 AM. You feel exhausted.', sprite: sprites.charlie_homecoming },
+                { speaker: 'Narrator', text: 'It\'s now 2 AM. You feel exhausted.' },
                 {
                     speaker: 'Charlie', text: 'I should have been home hours ago.',
                     choices: [
@@ -741,7 +738,7 @@
                         { text: 'Just try to Google it and hope for the best.', effects: { academic: -5 }, popup: { type: 'negative', header: 'Heads-Up: Unreliable Info', why: 'The internet is full of information, but not all of it is accurate or helpful.', bigPicture: 'Relying on primary sources, like your teacher or textbook, is the best way to ensure you\'re learning the right material.', betterWay: 'Don\'t be afraid to ask for help. Teachers appreciate it when students advocate for their own learning.'} },
                     ]
                 },
-                { speaker: 'Classmate', text: 'Hey, I still have some of those "study pills" if you need one for the big test tomorrow. No charge.', sprite: sprites.alex_neutral }, // Placeholder
+                { speaker: 'Classmate', text: 'Hey, I still have some of those "study pills" if you need one for the big test tomorrow. No charge.' },
                 {
                     speaker: 'Charlie', text: 'The pressure is even higher than last time.',
                     choices: [
@@ -905,37 +902,60 @@
         }
     }
 
+    // --- FUNCTION UPDATED TO FIX SPRITE LOGIC ---
     function showScene() {
         const roundData = gameData[currentRound];
         const sceneData = roundData[eventMode];
         const scene = sceneData[currentScene];
 
         backgroundImage.src = scene.bg || backgroundImage.src;
-        
-        let finalSprite = scene.sprite;
 
-        // Dynamic Alex sprite logic
-        if (finalSprite === sprites.alex_neutral && !((eventMode === 'eveningEvent' || eventMode === 'afterpartyEvent') && currentRound === 3) ) {
-            if (stats.alexHealth < 0) {
-                finalSprite = sprites.alex_haggard;
+        let finalSprite;
+
+        // Rule 1: Handle explicit sprites first. This allows for specific emotional expressions.
+        if (scene.sprite) {
+            finalSprite = scene.sprite;
+        } 
+        // Rule 2: If no explicit sprite, determine it based on the speaker and context.
+        else {
+            if (scene.speaker === 'Alex') {
+                // Special context: Homecoming (Round 4)
+                if ((eventMode === 'eveningEvent' || eventMode === 'afterpartyEvent') && currentRound === 3) {
+                    finalSprite = sprites.alex_homecoming;
+                } 
+                // Default context: Haggard or Neutral
+                else {
+                    finalSprite = (stats.alexHealth < 0) ? sprites.alex_haggard : sprites.alex_neutral;
+                }
+            } else if (scene.speaker === 'Mom') {
+                finalSprite = sprites.mom_neutral;
+            } else { 
+                // Default for Charlie, Narrator, Classmate, etc.
+                // Use a dynamic Charlie sprite based on his average stats for a more responsive feel.
+                const totalScore = stats.peerSocial + stats.familySocial + stats.academic + stats.mentalHealth + stats.physicalHealth;
+                const avgScore = totalScore / 5;
+                if (avgScore > 75) {
+                    finalSprite = sprites.charlie_happy;
+                } else if (avgScore < 50) {
+                    finalSprite = sprites.charlie_stressed;
+                } else {
+                    finalSprite = sprites.charlie_neutral;
+                }
+
+                // Special context override for Charlie: Homecoming
+                if ((eventMode === 'eveningEvent' || eventMode === 'afterpartyEvent') && currentRound === 3) {
+                    finalSprite = sprites.charlie_homecoming;
+                }
             }
         }
         
-        // Special homecoming sprite logic
-        if((eventMode === 'eveningEvent' || eventMode === 'afterpartyEvent') && currentRound === 3) {
-             if(scene.speaker === 'Alex') {
-                finalSprite = sprites.alex_homecoming;
-            } else {
-                finalSprite = sprites.charlie_homecoming;
-            }
-        }
-
+        // Final rendering step
         if (finalSprite) {
             characterSprite.src = finalSprite;
             characterSprite.classList.remove('opacity-0');
         } else {
-            characterSprite.src = sprites.charlie_neutral;
-            characterSprite.classList.remove('opacity-0');
+            // Hide sprite if no character is relevant
+            characterSprite.classList.add('opacity-0');
         }
 
         speakerName.textContent = scene.speaker;
@@ -948,10 +968,8 @@
             scene.choices.forEach((choice) => {
                 const isLocked = choice.requires && stats[choice.requires.stat] < choice.requires.value;
                 
-                // If the choice has a requirement...
                 if (choice.requires) {
                     if (isLocked) {
-                        // Render the locked, disabled primary choice
                         const tooltipContainer = document.createElement('div');
                         tooltipContainer.className = 'tooltip';
                         const button = document.createElement('button');
@@ -965,7 +983,6 @@
                         tooltipContainer.appendChild(tooltipText);
                         choicesContainer.appendChild(tooltipContainer);
                         
-                        // Render the alternative choice as an enabled button
                         if (choice.alternative) {
                             const altButton = document.createElement('button');
                             altButton.textContent = choice.alternative.text;
@@ -974,7 +991,6 @@
                             choicesContainer.appendChild(altButton);
                         }
                     } else {
-                        // Render the unlocked primary choice
                         const button = document.createElement('button');
                         button.textContent = choice.text;
                         button.className = 'choice-button text-white font-bold py-2 px-4 rounded w-full';
@@ -982,7 +998,6 @@
                         choicesContainer.appendChild(button);
                     }
                 } else {
-                    // If the choice has no requirement, just render it normally.
                     const button = document.createElement('button');
                     button.textContent = choice.text;
                     button.className = 'choice-button text-white font-bold py-2 px-4 rounded w-full';
@@ -994,6 +1009,7 @@
             nextButton.classList.remove('hidden');
         }
     }
+
 
     function nextScene() {
         const round = gameData[currentRound];
