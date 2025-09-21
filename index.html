@@ -257,10 +257,10 @@
                    Welcome! You will guide a freshman named Charlie through their first semester. Your goal is to not only survive, but thrive.
                  </p>
                  <ul class="text-left list-disc list-inside mb-6 space-y-2">
-                   <li><b class="text-green-400">The Goal:</b> Finish 5 rounds with all your personal stats above **85**.</li>
+                   <li><b class="text-green-400">The Goal:</b> Finish 5 rounds with all your personal stats above **70**.</li>
                    <li><b class="text-blue-400">Support Your Friends:</b> Your choices don't just affect you. Your friendship with Alex will be tracked. Being a supportive friend is crucial. **You cannot win the game if Alex is not in a good place by the end, regardless of your own stats.**</li>
-                   <li><b class="text-yellow-400">Stat Decay:</b> Life requires constant effort. At the end of each round, every stat will naturally decrease by 4 points. You must actively maintain them!</li>
-                   <li><b class="text-red-400">Stress & Burnout:</b> If a stat drops below 85, it creates a 'stress penalty' on all other stats. If any stat falls below 30, it triggers a 'burnout,' causing a massive penalty.</li>
+                   <li><b class="text-yellow-400">Stat Decay:</b> Life requires constant effort. At the end of each round, every stat will naturally decrease by 2 points. You must actively maintain them!</li>
+                   <li><b class="text-red-400">Stress & Burnout:</b> If a stat drops below 70, it creates a 'stress penalty' on all other stats. If any stat falls below 30, it triggers a 'burnout,' causing a massive penalty.</li>
                  </ul>
                  <button id="startButton" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-4 px-8 rounded-lg text-2xl shadow-lg">Begin Semester</button>
             </div>
@@ -375,7 +375,7 @@
         alex_homecoming: 'https://i.postimg.cc/bJ0NHjVF/Alex-Homecoming.png',
     };
     
-    // --- GAME DATA (PENALTIES REDUCED BY 40%) ---
+    // --- GAME DATA (PENALTIES REDUCED) ---
     const gameData = [
         // ROUND 1: FIRST DAY
         {
@@ -414,9 +414,9 @@
                 }
             ],
             dailyLife: {
-                study: { effects: { academic: 22, peerSocial: -7, mentalHealth: -7, physicalHealth: -3 } },
-                exercise: { effects: { physicalHealth: 18, mentalHealth: 12, academic: -7 } },
-                friends: { effects: { peerSocial: 18, mentalHealth: 8, academic: -11, alexEffect: 1 } },
+                study: { effects: { academic: 18, peerSocial: -7, mentalHealth: -7, physicalHealth: -3 } },
+                exercise: { effects: { physicalHealth: 15, mentalHealth: 10, academic: -8 } },
+                friends: { effects: { peerSocial: 15, mentalHealth: 8, academic: -10, alexEffect: 1 } },
                 trouble: { 
                     success: { effects: { peerSocial: 10, mentalHealth: -3 }, flag: 'snuckIntoMovie', popup: { type: 'positive', header: 'Got Away With It...', why: 'You decided to sneak into a movie without paying. The thrill was exciting, but the anxiety of getting caught lingered.', bigPicture: 'Small risks can have big consequences, and the stress often outweighs the reward.', reward: '+10 Peer Social, -3 Mental Health.'} },
                     failure: { effects: { familySocial: -12, academic: -9, mentalHealth: -9, physicalHealth: -9 }, popup: { type: 'negative', header: 'Busted!', why: 'You decided to sneak into a movie without paying. An usher\'s flashlight caught you. They called security, who then called your parents.', bigPicture: 'This will have a major impact on your family\'s trust and your freedom.', betterWay: 'There are plenty of fun, low-cost things to do that don\'t involve breaking rules.'} }
@@ -469,9 +469,9 @@
                 }
             ],
             dailyLife: {
-                study: { effects: { academic: 22, peerSocial: -7, mentalHealth: -7, physicalHealth: -3 } },
-                exercise: { effects: { physicalHealth: 18, mentalHealth: 12, academic: -7 } },
-                friends: { effects: { peerSocial: 18, mentalHealth: 8, academic: -11, alexEffect: 1 } },
+                study: { effects: { academic: 18, peerSocial: -7, mentalHealth: -7, physicalHealth: -3 } },
+                exercise: { effects: { physicalHealth: 15, mentalHealth: 10, academic: -8 } },
+                friends: { effects: { peerSocial: 15, mentalHealth: 8, academic: -10, alexEffect: 1 } },
                 trouble: {
                     success: { effects: { peerSocial: 12, physicalHealth: -6 }, flag: 'hasVapePen', popup: { type: 'positive', header: 'A Risky Purchase...', why: 'An upperclassman offered to sell you a vape pen. The stress of the secret is already getting to you.', bigPicture: 'Owning a vape pen at school poses health risks and the risk of getting caught later.', reward: '+12 Peer Social.'} },
                     failure: { effects: { familySocial: -12, academic: -9, mentalHealth: -9, physicalHealth: -9, peerSocial: -12 }, popup: { type: 'negative', header: 'Busted!', why: 'An upperclassman offered to sell you a vape pen. During the exchange behind the gym, a teacher rounded the corner. You were both caught red-handed.', bigPicture: 'This suspension means you\'re grounded. No party for you, and you had to cancel on Alex.', betterWay: 'The risks of buying or owning these products are never worth the perceived social gain.'} }
@@ -582,9 +582,9 @@
                 }
             ],
             dailyLife: {
-                study: { effects: { academic: 22, peerSocial: -7, mentalHealth: -7, physicalHealth: -3 } },
-                exercise: { effects: { physicalHealth: 18, mentalHealth: 12, academic: -7 } },
-                friends: { effects: { peerSocial: 18, mentalHealth: 8, academic: -11, alexEffect: 1 } },
+                study: { effects: { academic: 18, peerSocial: -7, mentalHealth: -7, physicalHealth: -3 } },
+                exercise: { effects: { physicalHealth: 15, mentalHealth: 10, academic: -8 } },
+                friends: { effects: { peerSocial: 15, mentalHealth: 8, academic: -10, alexEffect: 1 } },
                 trouble: {
                     success: { effects: { academic: 10, mentalHealth: -9 }, flag: 'hasAnswerKey', popup: { type: 'positive', header: 'Success!', why: 'You got the answer key, but the anxiety of getting caught is eating you alive.', bigPicture: 'Cheating might get you a good grade now, but it creates intense anxiety and you don\'t actually learn.', reward: '+10 Academic.'} },
                     failure: { effects: { familySocial: -12, academic: -15, mentalHealth: -9, physicalHealth: -9 }, popup: { type: 'negative', header: 'Busted!', why: 'You tried to get the answer key from the teacher\'s desk. Just as your hand touched the paper, the door opened. The teacher saw everything.', bigPicture: 'The consequences for academic dishonesty are severe and can affect your entire high school career.', betterWay: 'Asking a teacher for help or extra credit is always the better path.'} }
@@ -645,9 +645,9 @@
                 }
             ],
             dailyLife: {
-                study: { effects: { academic: 22, peerSocial: -7, mentalHealth: -7, physicalHealth: -3 } },
-                exercise: { effects: { physicalHealth: 18, mentalHealth: 12, academic: -7 } },
-                friends: { effects: { peerSocial: 18, mentalHealth: 8, academic: -11, alexEffect: 1 } },
+                study: { effects: { academic: 18, peerSocial: -7, mentalHealth: -7, physicalHealth: -3 } },
+                exercise: { effects: { physicalHealth: 15, mentalHealth: 10, academic: -8 } },
+                friends: { effects: { peerSocial: 15, mentalHealth: 8, academic: -10, alexEffect: 1 } },
                 trouble: {
                     success: { effects: { peerSocial: 15, mentalHealth: -6, familySocial: -3 }, flag: 'liedAboutSleepover', popup: { type: 'positive', header: 'Success!', why: 'You lied to your parents so you could go to an afterparty. It was fun, but the stress of keeping the secret is taking a toll.', bigPicture: 'Even when you get away with it, lying erodes the foundation of trust with your family.', reward: '+15 Peer Social.'} },
                     failure: { effects: { familySocial: -15, academic: -9, mentalHealth: -9, physicalHealth: -9, peerSocial: -18 }, popup: { type: 'negative', header: 'Busted!', why: 'You decided to lie to your parents. The plan seemed perfect until your mom called Alex\'s mom to confirm. The lie completely unraveled.', bigPicture: 'This lie means you\'re grounded. No homecoming for you, and Alex is really disappointed.', betterWay: 'Try to negotiate for more freedom honestly instead of taking it dishonestly.'} }
@@ -792,9 +792,9 @@
                 }
             ],
             dailyLife: {
-                study: { effects: { academic: 22, peerSocial: -7, mentalHealth: -7, physicalHealth: -3 } },
-                exercise: { effects: { physicalHealth: 18, mentalHealth: 12, academic: -7 } },
-                friends: { effects: { peerSocial: 18, mentalHealth: 8, academic: -11, alexEffect: 1 } },
+                study: { effects: { academic: 18, peerSocial: -7, mentalHealth: -7, physicalHealth: -3 } },
+                exercise: { effects: { physicalHealth: 15, mentalHealth: 10, academic: -8 } },
+                friends: { effects: { peerSocial: 15, mentalHealth: 8, academic: -10, alexEffect: 1 } },
                 trouble: {
                     success: { effects: { academic: 15, mentalHealth: -12, peerSocial: -6 }, flag: 'cheatedOnEssay', popup: { type: 'positive', header: 'Success!', why: 'You paid another student to write your final essay. The guilt and fear of being caught is immense.', bigPicture: 'Plagiarism is a serious academic offense. The anxiety of being caught will linger, and if discovered, the consequences could be severe.', reward: '+15 Academic.'} },
                     failure: { effects: { familySocial: -12, academic: -18, mentalHealth: -12, physicalHealth: -9 }, popup: { type: 'negative', header: 'Busted!', why: 'You paid another student to write your final essay. Their plagiarism software flagged it immediately.', bigPicture: 'You failed the class on the spot. This will have major academic consequences.', betterWay: 'It is always better to submit your own imperfect work than someone else\'s perfect work.'} }
@@ -1289,7 +1289,7 @@
         let recapText = '';
         let burnoutText = '';
         
-        const decayAmount = -4; 
+        const decayAmount = -2; // Reduced decay
         for (const stat in statInfo) {
             penaltyEffects[stat] = (penaltyEffects[stat] || 0) + decayAmount;
         }
@@ -1303,7 +1303,7 @@
             }
         }
         if (isBurnout) {
-            const burnoutPenalty = -9;
+            const burnoutPenalty = -7; // Reduced burnout penalty
             burnoutText = `Your ${burnoutSource.join(', ')} is critically low, causing a burnout! This massive stress impacts everything. All other stats get an additional ${burnoutPenalty} penalty.`;
             for (const stat in statInfo) {
                 if (!burnoutSource.includes(statInfo[stat].name)) {
@@ -1314,11 +1314,11 @@
 
         let failingStats = [];
         for (const stat in statInfo) {
-            if (stats[stat] + (penaltyEffects[stat] || 0) < 85) { // Pass mark is now 85
+            if (stats[stat] + (penaltyEffects[stat] || 0) < 70) { // Pass mark back to 70
                 failingStats.push(statInfo[stat].name);
             }
         }
-        const stressPenaltyAmount = -5;
+        const stressPenaltyAmount = -3; // Reduced stress penalty
         if (failingStats.length > 0) {
             const totalPenalty = failingStats.length * stressPenaltyAmount;
             recapText = `Struggling in ${failingStats.join(', ')} is causing general stress, resulting in a ${totalPenalty} point penalty to all stats.`;
@@ -1526,7 +1526,7 @@
         let personalPassing = true;
         for (const stat in stats) {
             if (stat === 'flags' || stat === 'alexHealth') continue;
-            if (stats[stat] < 85) personalPassing = false; // New pass mark
+            if (stats[stat] < 70) personalPassing = false; // Pass mark is 70
         }
         const alexPassing = stats.alexHealth > 2;
 
@@ -1554,19 +1554,19 @@
             let analysisText = '';
             
             if (stat === 'mentalHealth') {
-                if (finalScore >= 85) analysisText = 'This was your core strength. Strong Mental Health gave you the resilience to handle academic pressure and navigate social challenges effectively.';
+                if (finalScore >= 70) analysisText = 'This was your core strength. Strong Mental Health gave you the resilience to handle academic pressure and navigate social challenges effectively.';
                 else analysisText = 'Low Mental Health was your biggest challenge. This made it harder to study (affecting Academics), engage with friends (Peer Social), and communicate openly with family (Family Social).';
             } else if (stat === 'peerSocial') {
-                if (finalScore >= 85) analysisText = 'You built a strong social circle! These positive relationships provided crucial support for your Mental Health, especially during stressful times like midterms.';
+                if (finalScore >= 70) analysisText = 'You built a strong social circle! These positive relationships provided crucial support for your Mental Health, especially during stressful times like midterms.';
                 else analysisText = 'Feeling isolated from peers put a strain on your Mental Health. Without a strong support system at school, academic and family stress felt more overwhelming.';
             } else if (stat === 'familySocial') {
-                 if (finalScore >= 85) analysisText = 'A trusting relationship at home was a great foundation. This stability buffered your Mental Health and gave you a safe space to decompress.';
+                 if (finalScore >= 70) analysisText = 'A trusting relationship at home was a great foundation. This stability buffered your Mental Health and gave you a safe space to decompress.';
                 else analysisText = 'Tension at home was a major source of stress, which directly lowered your Mental Health and made it difficult to focus on your schoolwork (Academics).';
             } else if (stat === 'academic') {
-                if (finalScore >= 85) analysisText = 'You did well in your classes! This success boosted your confidence and positively impacted your Mental Health.';
-                else analysisText = `Struggling academically was a significant source of stress. This likely connects to your low ${stats.physicalHealth < 85 ? 'Physical Health' : 'Mental Health'}, as lack of sleep or high anxiety makes it hard to learn.`;
+                if (finalScore >= 70) analysisText = 'You did well in your classes! This success boosted your confidence and positively impacted your Mental Health.';
+                else analysisText = `Struggling academically was a significant source of stress. This likely connects to your low ${stats.physicalHealth < 70 ? 'Physical Health' : 'Mental Health'}, as lack of sleep or high anxiety makes it hard to learn.`;
             } else if (stat === 'physicalHealth') {
-                if (finalScore >= 85) analysisText = 'Great job taking care of yourself! Getting enough sleep and exercise gave you the energy to succeed (Academics) and the resilience to manage stress (Mental Health).';
+                if (finalScore >= 70) analysisText = 'Great job taking care of yourself! Getting enough sleep and exercise gave you the energy to succeed (Academics) and the resilience to manage stress (Mental Health).';
                 else analysisText = 'Not prioritizing sleep and well-being directly impacted your ability to focus in class (Academics) and manage your mood (Mental Health).';
             }
 
