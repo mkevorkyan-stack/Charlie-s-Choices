@@ -174,7 +174,6 @@
             opacity: 1;
         }
         
-        /* --- NEW CSS FOR MENU SPRITES --- */
         .menu-sprite-container {
             display: flex;
             justify-content: center;
@@ -201,30 +200,30 @@
 
         <div id="uiContainer" class="hidden">
             <div class="absolute top-4 left-4 right-4 grid grid-cols-5 gap-2 md:gap-4 z-10">
-                <div class="text-white text-center text-xs md:text-sm">
-                    <p>Peer Social</p>
+                <div class="text-center text-xs md:text-sm">
+                    <p class="font-bold text-black [text-shadow:0_0_4px_#FFF,0_0_6px_#FFF]">Peer Social</p>
                     <div class="w-full bg-gray-700 rounded-full h-2.5 stat-bar"><div id="peerSocialFill" class="bg-blue-500 h-2.5 rounded-full stat-bar-fill" style="width: 70%"></div></div>
-                    <p id="peerSocialValue" class="font-bold mt-1">70</p>
+                    <p id="peerSocialValue" class="font-bold text-black [text-shadow:0_0_4px_#FFF,0_0_6px_#FFF] mt-1">70</p>
                 </div>
-                <div class="text-white text-center text-xs md:text-sm">
-                    <p>Family Social</p>
+                <div class="text-center text-xs md:text-sm">
+                    <p class="font-bold text-black [text-shadow:0_0_4px_#FFF,0_0_6px_#FFF]">Family Social</p>
                     <div class="w-full bg-gray-700 rounded-full h-2.5 stat-bar"><div id="familySocialFill" class="bg-green-500 h-2.5 rounded-full stat-bar-fill" style="width: 70%"></div></div>
-                    <p id="familySocialValue" class="font-bold mt-1">70</p>
+                    <p id="familySocialValue" class="font-bold text-black [text-shadow:0_0_4px_#FFF,0_0_6px_#FFF] mt-1">70</p>
                 </div>
-                <div class="text-white text-center text-xs md:text-sm">
-                    <p>Academic</p>
+                <div class="text-center text-xs md:text-sm">
+                    <p class="font-bold text-black [text-shadow:0_0_4px_#FFF,0_0_6px_#FFF]">Academic</p>
                     <div class="w-full bg-gray-700 rounded-full h-2.5 stat-bar"><div id="academicFill" class="bg-yellow-500 h-2.5 rounded-full stat-bar-fill" style="width: 70%"></div></div>
-                    <p id="academicValue" class="font-bold mt-1">70</p>
+                    <p id="academicValue" class="font-bold text-black [text-shadow:0_0_4px_#FFF,0_0_6px_#FFF] mt-1">70</p>
                 </div>
-                <div class="text-white text-center text-xs md:text-sm">
-                    <p>Mental Health</p>
+                <div class="text-center text-xs md:text-sm">
+                    <p class="font-bold text-black [text-shadow:0_0_4px_#FFF,0_0_6px_#FFF]">Mental Health</p>
                     <div class="w-full bg-gray-700 rounded-full h-2.5 stat-bar"><div id="mentalHealthFill" class="bg-purple-500 h-2.5 rounded-full stat-bar-fill" style="width: 70%"></div></div>
-                    <p id="mentalHealthValue" class="font-bold mt-1">70</p>
+                    <p id="mentalHealthValue" class="font-bold text-black [text-shadow:0_0_4px_#FFF,0_0_6px_#FFF] mt-1">70</p>
                 </div>
-                <div class="text-white text-center text-xs md:text-sm">
-                    <p>Physical Health</p>
+                <div class="text-center text-xs md:text-sm">
+                    <p class="font-bold text-black [text-shadow:0_0_4px_#FFF,0_0_6px_#FFF]">Physical Health</p>
                     <div class="w-full bg-gray-700 rounded-full h-2.5 stat-bar"><div id="physicalHealthFill" class="bg-red-500 h-2.5 rounded-full stat-bar-fill" style="width: 70%"></div></div>
-                    <p id="physicalHealthValue" class="font-bold mt-1">70</p>
+                    <p id="physicalHealthValue" class="font-bold text-black [text-shadow:0_0_4px_#FFF,0_0_6px_#FFF] mt-1">70</p>
                 </div>
             </div>
 
@@ -259,9 +258,9 @@
                  </p>
                  <ul class="text-left list-disc list-inside mb-6 space-y-2">
                    <li><b>The Goal:</b> Finish 5 rounds with all stats above 70 to pass.</li>
-                   <li><b>Stats are Interconnected:</b> Success in one area requires success in others. If a stat drops below 70, it will create a 'stress penalty' at the end of the round, lowering all other stats.</li>
-                   <li><b>Daily Choices Have Trade-offs:</b> Choosing to study helps your grades, but might hurt your social life. Choosing to work out helps your health, but might take time from studying. Balance is key.</li>
-                   <li><b>Your Choices Affect Others:</b> Your decisions, especially around substance use, will impact your friendship with Alex. Pay attention to how your actions make them feel.</li>
+                   <li><b class="text-yellow-400">Stat Decay:</b> Life requires constant effort. At the end of each round, every stat will naturally decrease by 5 points. You must actively maintain them!</li>
+                   <li><b class="text-red-400">Stress & Burnout:</b> If a stat drops below 70, it creates a 'stress penalty' on all other stats. If any stat falls below 30, it triggers a 'burnout,' causing a massive penalty.</li>
+                   <li><b>Balance is Everything:</b> Every choice has a trade-off. Choosing to study helps grades but hurts your social life. Choosing to party helps socially but hurts your health and family trust. There are no perfect choices.</li>
                  </ul>
                  <button id="startButton" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-4 px-8 rounded-lg text-2xl shadow-lg">Begin Semester</button>
             </div>
@@ -415,9 +414,9 @@
                 }
             ],
             dailyLife: {
-                study: { effects: { academic: 15, peerSocial: -8, mentalHealth: -8 } },
-                exercise: { effects: { physicalHealth: 15, mentalHealth: 10, academic: -8 } },
-                friends: { effects: { peerSocial: 15, mentalHealth: 5, academic: -12 } },
+                study: { effects: { academic: 20, peerSocial: -10, mentalHealth: -10 } },
+                exercise: { effects: { physicalHealth: 15, mentalHealth: 10, academic: -10 } },
+                friends: { effects: { peerSocial: 15, mentalHealth: 5, academic: -15 } },
                 trouble: { 
                     success: { effects: { peerSocial: 10, mentalHealth: -5 }, flag: 'snuckIntoMovie', popup: { type: 'positive', header: 'Got Away With It...', why: 'You decided to sneak into a movie without paying. The thrill was exciting, but the anxiety of getting caught lingered.', bigPicture: 'Small risks can have big consequences, and the stress often outweighs the reward.', reward: '+10 Peer Social, -5 Mental Health.'} },
                     failure: { effects: { familySocial: -20, academic: -15, mentalHealth: -15, physicalHealth: -15 }, popup: { type: 'negative', header: 'Busted!', why: 'You decided to sneak into a movie without paying. An usher\'s flashlight caught you. They called security, who then called your parents.', bigPicture: 'This will have a major impact on your family\'s trust and your freedom.', betterWay: 'There are plenty of fun, low-cost things to do that don\'t involve breaking rules.'} }
@@ -470,9 +469,9 @@
                 }
             ],
             dailyLife: {
-                study: { effects: { academic: 15, peerSocial: -8, mentalHealth: -8 } },
-                exercise: { effects: { physicalHealth: 15, mentalHealth: 10, academic: -8 } },
-                friends: { effects: { peerSocial: 15, mentalHealth: 5, academic: -12 } },
+                study: { effects: { academic: 20, peerSocial: -10, mentalHealth: -10 } },
+                exercise: { effects: { physicalHealth: 15, mentalHealth: 10, academic: -10 } },
+                friends: { effects: { peerSocial: 15, mentalHealth: 5, academic: -15 } },
                 trouble: {
                     success: { effects: { peerSocial: 12, physicalHealth: -10 }, flag: 'hasVapePen', popup: { type: 'positive', header: 'A Risky Purchase...', why: 'An upperclassman offered to sell you a vape pen. The stress of the secret is already getting to you.', bigPicture: 'Owning a vape pen at school poses health risks and the risk of getting caught later.', reward: '+12 Peer Social.'} },
                     failure: { effects: { familySocial: -20, academic: -15, mentalHealth: -15, physicalHealth: -15, peerSocial: -20 }, popup: { type: 'negative', header: 'Busted!', why: 'An upperclassman offered to sell you a vape pen. During the exchange behind the gym, a teacher rounded the corner. You were both caught red-handed.', bigPicture: 'This suspension means you\'re grounded. No party for you, and you had to cancel on Alex.', betterWay: 'The risks of buying or owning these products are never worth the perceived social gain.'} }
@@ -583,9 +582,9 @@
                 }
             ],
             dailyLife: {
-                study: { effects: { academic: 15, peerSocial: -8, mentalHealth: -8 } },
-                exercise: { effects: { physicalHealth: 15, mentalHealth: 10, academic: -8 } },
-                friends: { effects: { peerSocial: 15, mentalHealth: 5, academic: -12 } },
+                study: { effects: { academic: 20, peerSocial: -10, mentalHealth: -10 } },
+                exercise: { effects: { physicalHealth: 15, mentalHealth: 10, academic: -10 } },
+                friends: { effects: { peerSocial: 15, mentalHealth: 5, academic: -15 } },
                 trouble: {
                     success: { effects: { academic: 10, mentalHealth: -15 }, flag: 'hasAnswerKey', popup: { type: 'positive', header: 'Success!', why: 'You got the answer key, but the anxiety of getting caught is eating you alive.', bigPicture: 'Cheating might get you a good grade now, but it creates intense anxiety and you don\'t actually learn.', reward: '+10 Academic.'} },
                     failure: { effects: { familySocial: -20, academic: -25, mentalHealth: -15, physicalHealth: -15 }, popup: { type: 'negative', header: 'Busted!', why: 'You tried to get the answer key from the teacher\'s desk. Just as your hand touched the paper, the door opened. The teacher saw everything.', bigPicture: 'The consequences for academic dishonesty are severe and can affect your entire high school career.', betterWay: 'Asking a teacher for help or extra credit is always the better path.'} }
@@ -646,9 +645,9 @@
                 }
             ],
             dailyLife: {
-                study: { effects: { academic: 15, peerSocial: -8, mentalHealth: -8 } },
-                exercise: { effects: { physicalHealth: 15, mentalHealth: 10, academic: -8 } },
-                friends: { effects: { peerSocial: 15, mentalHealth: 5, academic: -12 } },
+                study: { effects: { academic: 20, peerSocial: -10, mentalHealth: -10 } },
+                exercise: { effects: { physicalHealth: 15, mentalHealth: 10, academic: -10 } },
+                friends: { effects: { peerSocial: 15, mentalHealth: 5, academic: -15 } },
                 trouble: {
                     success: { effects: { peerSocial: 15, mentalHealth: -10, familySocial: -5 }, flag: 'liedAboutSleepover', popup: { type: 'positive', header: 'Success!', why: 'You lied to your parents so you could go to an afterparty. It was fun, but the stress of keeping the secret is taking a toll.', bigPicture: 'Even when you get away with it, lying erodes the foundation of trust with your family.', reward: '+15 Peer Social.'} },
                     failure: { effects: { familySocial: -25, academic: -15, mentalHealth: -15, physicalHealth: -15, peerSocial: -30 }, popup: { type: 'negative', header: 'Busted!', why: 'You decided to lie to your parents. The plan seemed perfect until your mom called Alex\'s mom to confirm. The lie completely unraveled.', bigPicture: 'This lie means you\'re grounded. No homecoming for you, and Alex is really disappointed.', betterWay: 'Try to negotiate for more freedom honestly instead of taking it dishonestly.'} }
@@ -791,9 +790,9 @@
                 }
             ],
             dailyLife: {
-                study: { effects: { academic: 15, peerSocial: -8, mentalHealth: -8 } },
-                exercise: { effects: { physicalHealth: 15, mentalHealth: 10, academic: -8 } },
-                friends: { effects: { peerSocial: 15, mentalHealth: 5, academic: -12 } },
+                study: { effects: { academic: 20, peerSocial: -10, mentalHealth: -10 } },
+                exercise: { effects: { physicalHealth: 15, mentalHealth: 10, academic: -10 } },
+                friends: { effects: { peerSocial: 15, mentalHealth: 5, academic: -15 } },
                 trouble: {
                     success: { effects: { academic: 15, mentalHealth: -20, peerSocial: -10 }, flag: 'cheatedOnEssay', popup: { type: 'positive', header: 'Success!', why: 'You paid another student to write your final essay. The guilt and fear of being caught is immense.', bigPicture: 'Plagiarism is a serious academic offense. The anxiety of being caught will linger, and if discovered, the consequences could be severe.', reward: '+15 Academic.'} },
                     failure: { effects: { familySocial: -20, academic: -30, mentalHealth: -20, physicalHealth: -15 }, popup: { type: 'negative', header: 'Busted!', why: 'You paid another student to write your final essay. Their plagiarism software flagged it immediately.', bigPicture: 'You failed the class on the spot. This will have major academic consequences.', betterWay: 'It is always better to submit your own imperfect work than someone else\'s perfect work.'} }
@@ -1045,7 +1044,7 @@
             if (currentScene < currentEventData.length) {
                 showScene();
             } else {
-                eventMode = 'mainScenario'; // Reset for the next round
+                eventMode = 'mainScenario';
                 showBackHome();
             }
         }
@@ -1283,28 +1282,58 @@
         characterSprite.classList.remove('opacity-0');
     }
 
+    // --- FUNCTION UPDATED WITH NEW DIFFICULTY MECHANICS ---
     function showRoundRecap() {
-        let failingStats = [];
+        let penaltyEffects = {};
+        let recapText = '';
+        let burnoutText = '';
+        
+        // 1. Natural Stat Decay
+        const decayAmount = -5;
         for (const stat in statInfo) {
-            if (stats[stat] < 70) {
-                failingStats.push(statInfo[stat].name);
+            penaltyEffects[stat] = (penaltyEffects[stat] || 0) + decayAmount;
+        }
+
+        // 2. Burnout Check (Critical Failure)
+        let isBurnout = false;
+        let burnoutSource = [];
+        for (const stat in statInfo) {
+            if (stats[stat] + penaltyEffects[stat] < 30) {
+                isBurnout = true;
+                burnoutSource.push(statInfo[stat].name);
+            }
+        }
+        if (isBurnout) {
+            const burnoutPenalty = -15;
+            burnoutText = `Your ${burnoutSource.join(', ')} is critically low, causing a burnout! This massive stress impacts everything. All other stats get an additional ${burnoutPenalty} penalty.`;
+            for (const stat in statInfo) {
+                if (!burnoutSource.includes(statInfo[stat].name)) {
+                    penaltyEffects[stat] = (penaltyEffects[stat] || 0) + burnoutPenalty;
+                }
             }
         }
 
-        let penalty = failingStats.length * -5;
-        let recapText = '';
-        let alexText = '';
-        
-        let penaltyEffects = {};
-        if (penalty < 0) {
-            recapText = `The struggles in ${failingStats.join(', ')} are taking a toll. The added stress has caused a ${penalty} point penalty to all stats.`;
+        // 3. Stress Penalty Check (Below Threshold)
+        let failingStats = [];
+        for (const stat in statInfo) {
+            if (stats[stat] + penaltyEffects[stat] < 70) {
+                failingStats.push(statInfo[stat].name);
+            }
+        }
+        const stressPenalty = failingStats.length * -8;
+        if (stressPenalty < 0) {
+            recapText = `Struggling in ${failingStats.join(', ')} is causing general stress, resulting in a ${stressPenalty} point penalty to all stats.`;
             for (const stat in statInfo) {
-                penaltyEffects[stat] = penalty;
+                penaltyEffects[stat] = (penaltyEffects[stat] || 0) + stressPenalty;
             }
         } else {
             recapText = 'You finished the round with all stats in a good place. Great job maintaining balance!';
         }
 
+        let fullRecap = `All stats naturally decay by ${-decayAmount} points each round.\n\n` + (burnoutText ? burnoutText + '\n\n' : '') + recapText;
+        
+        // Friendship check
+        let alexText = "";
         if (stats.alexHealth > 0) {
             alexText = "Your positive choices are being a good influence on Alex.";
         } else if (stats.alexHealth < 0) {
@@ -1316,7 +1345,7 @@
         const popupData = {
             type: 'neutral',
             header: `End of Round ${currentRound + 1} Report`,
-            why: recapText,
+            why: fullRecap,
             bigPicture: alexText,
             reward: "Prepare for the next day..."
         }
@@ -1327,7 +1356,7 @@
             loadRound(currentRound);
         });
     }
-    
+
     function showPopup(popupData, effects, callback) {
         popupCallback = callback;
         popupHeader.textContent = popupData.header;
@@ -1346,13 +1375,12 @@
             popupBetterWay.textContent = popupData.betterWay;
             popupBetterWay.classList.remove('text-green-700');
             popupBetterWay.classList.add('text-red-700');
-        } else { // Neutral for round recap
+        } else {
             popupBox.classList.remove('bg-green-100', 'bg-red-100');
             popupBox.classList.add('bg-gray-100');
             popupBetterWay.textContent = popupData.reward;
             popupBetterWay.classList.remove('text-green-700', 'text-red-700');
         }
-
 
         popupEffectsContainer.innerHTML = '';
         for (const stat in effects) {
