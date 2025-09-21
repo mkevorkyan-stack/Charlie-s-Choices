@@ -72,6 +72,11 @@
             gap: 10px;
             margin-top: 15px;
         }
+        .choices-container.grid-layout {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+        }
         .choice-button {
             background-color: #4f46e5;
             border: 2px solid #818cf8;
@@ -174,14 +179,11 @@
 <body class="bg-gray-900 flex items-center justify-center h-screen">
 
     <div id="gameContainer" class="game-container bg-black mx-auto">
-        <!-- Background and Sprites -->
         <img id="backgroundImage" class="background-image" src="" alt="Game Background">
         <img id="characterSprite" class="character-sprite opacity-0" src="" alt="Character Sprite">
         <div id="statFeedbackContainer" class="absolute inset-0 pointer-events-none z-50 flex justify-center items-center"></div>
 
-        <!-- UI Elements -->
         <div id="uiContainer" class="hidden">
-            <!-- Stats -->
             <div class="absolute top-4 left-4 right-4 grid grid-cols-5 gap-2 md:gap-4 z-10">
                 <div class="text-white text-center text-xs md:text-sm">
                     <p>Peer Social</p>
@@ -210,7 +212,6 @@
                 </div>
             </div>
 
-            <!-- Dialogue Box -->
             <div id="dialogueBox" class="dialogue-box">
                 <div id="speakerName" class="speaker-name">Narrator</div>
                 <p id="dialogueText" class="dialogue-text"></p>
@@ -219,7 +220,6 @@
             </div>
         </div>
 
-        <!-- Start Screen -->
         <div id="startScreen" class="popup-overlay flex-col text-white text-center">
             <div id="nameEntryScreen">
                 <h1 class="text-5xl font-bold mb-4">Charlie's Choice</h1>
@@ -230,19 +230,18 @@
             <div id="instructionsScreen" class="hidden bg-gray-800 p-8 rounded-lg max-w-lg">
                  <h2 class="text-3xl font-bold mb-4">How to Play</h2>
                  <p class="text-left mb-4">
-                    Welcome! You will guide a freshman named Charlie through their first semester. Your goal is to make choices that keep all five of Charlie's life stats above 70.
+                   Welcome! You will guide a freshman named Charlie through their first semester. Your goal is to make choices that keep all five of Charlie's life stats above 70.
                  </p>
                  <ul class="text-left list-disc list-inside mb-6 space-y-2">
-                    <li><b>The Goal:</b> Finish 5 rounds with all stats above 70 to pass.</li>
-                    <li><b>Stats are Interconnected:</b> Success in one area requires success in others. If a stat drops below 70, it will create a 'stress penalty' at the end of the round, lowering all other stats.</li>
-                    <li><b>Daily Choices Have Trade-offs:</b> Choosing to study helps your grades, but might hurt your social life. Choosing to work out helps your health, but might take time from studying. Balance is key.</li>
-                    <li><b>Your Choices Affect Others:</b> Your decisions, especially around substance use, will impact your friendship with Alex. Pay attention to how your actions make them feel.</li>
+                   <li><b>The Goal:</b> Finish 5 rounds with all stats above 70 to pass.</li>
+                   <li><b>Stats are Interconnected:</b> Success in one area requires success in others. If a stat drops below 70, it will create a 'stress penalty' at the end of the round, lowering all other stats.</li>
+                   <li><b>Daily Choices Have Trade-offs:</b> Choosing to study helps your grades, but might hurt your social life. Choosing to work out helps your health, but might take time from studying. Balance is key.</li>
+                   <li><b>Your Choices Affect Others:</b> Your decisions, especially around substance use, will impact your friendship with Alex. Pay attention to how your actions make them feel.</li>
                  </ul>
                  <button id="startButton" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-4 px-8 rounded-lg text-2xl shadow-lg">Begin Semester</button>
             </div>
         </div>
 
-        <!-- End Screen -->
         <div id="endScreen" class="popup-overlay hidden">
             <div class="bg-white p-6 rounded-lg text-left shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto">
                 <h2 id="endTitle" class="text-3xl font-bold mb-2 text-center"></h2>
@@ -254,7 +253,6 @@
             </div>
         </div>
 
-        <!-- Insight / Confidence Boost Popup -->
         <div id="popupOverlay" class="popup-overlay hidden">
             <div id="popupBox" class="popup-box bg-white">
                 <h3 id="popupHeader" class="text-2xl font-bold mb-3">Header</h3>
@@ -433,11 +431,11 @@
                 {
                     speaker: 'Charlie', text: 'A party? I don\'t know...',
                     choices: [
-                        { text: 'Agree to go.', effects: { peerSocial: 10 }, popup: { type: 'positive', header: 'Invitation Accepted!', why: 'You agreed to go to your first high school party!', bigPicture: 'Social events are a big part of the high school experience.', reward: '+10 Peer Social.'} },
+                        { text: 'Agree to go.', effects: { peerSocial: 10 }, flag: 'agreedToParty', popup: { type: 'positive', header: 'Invitation Accepted!', why: 'You agreed to go to your first high school party!', bigPicture: 'Social events are a big part of the high school experience.', reward: '+10 Peer Social.'} },
                         { text: 'Decline the invitation.', effects: { peerSocial: -10 }, popup: { type: 'negative', header: 'Heads-Up: Staying In', why: 'You turned down a chance to socialize.', bigPicture: 'It is okay to not want to go to parties, but it might make it harder to build friendships.', betterWay: 'Even if you can\'t go, you could say "Thanks for inviting me! Maybe next time."'}}
                     ]
                 },
-                { speaker: 'Narrator', text: 'At lunch, you overhear some classmates spreading a mean rumor about another student.', bg: backgrounds.hallway, sprite: sprites.charlie_neutral },
+                { speaker: 'Narrator', text: 'At lunch, you overhear some classmates spreading a mean rumor about another student.', bg: backgrounds.hallway, sprite: sprites.charrlie_neutral },
                 {
                     speaker: 'Charlie', text: 'That\'s not true... I think.',
                     choices: [
@@ -489,16 +487,27 @@
                     ]
                 }
             ],
+            // --- CHANGE START ---
             backHome: {
                 speaker: 'Mom', sprite: sprites.mom_concerned, bg: backgrounds.livingroom, lowStatThreshold: 40,
+                // Dialogue for if Charlie went to the party
                 dialogue: "You're home. How was your night?",
-                groundedDialogue: "You're grounded, remember? No party tonight. We need to talk about your choices.",
                 choices: {
                     positive: { text: "It was fine. I got home on time like I promised.", effects: { familySocial: 10 } },
                     neutral: { text: "It was just a party. Nothing happened.", effects: { familySocial: -5 } },
                     negative: { text: "Why are you always waiting up for me?", effects: { familySocial: -15, mentalHealth: -5 } }
+                },
+                // Dialogue for if Charlie was grounded
+                groundedDialogue: "You're grounded, remember? No party tonight. We need to talk about your choices.",
+                // Dialogue for if Charlie stayed home
+                stayedInDialogue: "How was your evening, honey?",
+                stayedInChoices: {
+                    positive: { text: "It was quiet. I just got some homework done.", effects: { familySocial: 5, academic: 5 } },
+                    neutral: { text: "It was fine. Nothing special.", effects: { familySocial: 0 } },
+                    negative: { text: "Boring. There's never anything to do.", effects: { familySocial: -10, mentalHealth: -5 } }
                 }
             }
+            // --- CHANGE END ---
         },
         // ROUND 3: MIDTERMS
         {
@@ -615,7 +624,7 @@
                 }
             },
             eveningEvent: [
-                 { speaker: 'Narrator', text: 'It\'s homecoming night! You arrive at the pre-dance party with Alex.', bg: backgrounds.party, sprite: sprites.charlie_homecoming },
+                { speaker: 'Narrator', text: 'It\'s homecoming night! You arrive at the pre-dance party with Alex.', bg: backgrounds.party, sprite: sprites.charlie_homecoming },
                 { speaker: 'Alex', text: 'Looks pretty fun! I\'m glad we decided to come.', sprite: sprites.alex_homecoming },
                 {
                     speaker: 'Charlie', text: 'Everyone else is drinking. They say it\'ll make dancing less awkward.',
@@ -634,12 +643,11 @@
                             effects: { peerSocial: 10, mentalHealth: 5 }, 
                             popup: { type: 'positive', header: 'Brave Move!', why: 'You faced your fear of awkwardness and went for it.', bigPicture: 'Being vulnerable is scary, but it\'s where the most meaningful connections are made.', reward: 'Boosts to Peer Social and Mental Health.'},
                             requires: { stat: 'mentalHealth', value: 35 },
-                        },
-                         { 
-                            text: 'Stand awkwardly at the edge of the dance floor.', 
-                            effects: { peerSocial: -5, mentalHealth: -5 }, 
-                            popup: { type: 'negative', header: 'Heads-Up: Frozen by Anxiety', why: 'You wanted to participate, but your anxiety was too high to take the risk.', bigPicture: 'Anxiety can feel paralyzing and prevent us from doing things we want to do. Healthy coping strategies can help manage these feelings.', betterWay: 'Even just asking a friend to stand with you by the dance floor is a smaller, more manageable step.' },
-                            alternative: true
+                            alternative: { 
+                                text: 'Stand awkwardly at the edge of the dance floor.', 
+                                effects: { peerSocial: -5, mentalHealth: -5 }, 
+                                popup: { type: 'negative', header: 'Heads-Up: Frozen by Anxiety', why: 'You wanted to participate, but your anxiety was too high to take the risk.', bigPicture: 'Anxiety can feel paralyzing and prevent us from doing things we want to do. Healthy coping strategies can help manage these feelings.', betterWay: 'Even just asking a friend to stand with you by the dance floor is a smaller, more manageable step.' }
+                            }
                         },
                         { text: 'Go hide in the bathroom until it\'s over.', effects: { mentalHealth: -10 }, popup: { type: 'negative', header: 'Flight Response', why: 'Your anxiety took over and you ran from the situation.', bigPicture: 'Avoiding things that make us anxious only makes the anxiety stronger next time.', betterWay: 'Take a deep breath. Remember that most people feel awkward, and it\'s okay.'} },
                     ]
@@ -739,12 +747,11 @@
                             effects: { mentalHealth: 20, academic: 5 }, 
                             popup: { type: 'positive', header: 'Self-Reliance', why: 'You chose to trust yourself and your preparation instead of looking for a risky shortcut.', bigPicture: 'Having confidence in your own ability to handle stress is the ultimate coping skill.', reward: 'A massive boost to Mental Health.'},
                             requires: { stat: 'mentalHealth', value: 50 },
-                        },
-                         { 
-                            text: 'Just take the pill without thinking.', 
-                            effects: { academic: 20, physicalHealth: -40, mentalHealth: -25 }, 
-                            popup: { type: 'negative', header: 'Heads-Up: Downward Spiral', why: 'Your mental health is so low you didn\'t even have the energy to fight the bad choice. It felt inevitable.', bigPicture: 'When mental health is very low, our decision-making is severely impaired. This is a critical time to seek help from a trusted adult.', betterWay: 'Talk to a parent, teacher, or counselor. You don\'t have to handle this alone.' },
-                            alternative: true
+                            alternative: { 
+                                text: 'Just take the pill without thinking.', 
+                                effects: { academic: 20, physicalHealth: -40, mentalHealth: -25 }, 
+                                popup: { type: 'negative', header: 'Heads-Up: Downward Spiral', why: 'Your mental health is so low you didn\'t even have the energy to fight the bad choice. It felt inevitable.', bigPicture: 'When mental health is very low, our decision-making is severely impaired. This is a critical time to seek help from a trusted adult.', betterWay: 'Talk to a parent, teacher, or counselor. You don\'t have to handle this alone.' }
+                            }
                         },
                     ]
                 }
@@ -927,36 +934,47 @@
         dialogueText.textContent = scene.text;
         
         choicesContainer.innerHTML = '';
+        choicesContainer.classList.remove('grid-layout'); // Reset layout
         if (scene.choices) {
             nextButton.classList.add('hidden');
             scene.choices.forEach((choice) => {
                 const isLocked = choice.requires && stats[choice.requires.stat] < choice.requires.value;
                 
-                if (isLocked) {
-                    // Render the locked, disabled primary choice
-                    const tooltipContainer = document.createElement('div');
-                    tooltipContainer.className = 'tooltip';
-                    const button = document.createElement('button');
-                    button.textContent = choice.text;
-                    button.className = 'choice-button text-white font-bold py-2 px-4 rounded w-full';
-                    button.disabled = true;
-                    const tooltipText = document.createElement('span');
-                    tooltipText.className = 'tooltiptext';
-                    tooltipText.textContent = `Requires ${statInfo[choice.requires.stat].name} > ${choice.requires.value}`;
-                    tooltipContainer.appendChild(button);
-                    tooltipContainer.appendChild(tooltipText);
-                    choicesContainer.appendChild(tooltipContainer);
-
-                    // Render the alternative choice as an enabled button
-                    if (choice.alternative) {
-                        const altButton = document.createElement('button');
-                        altButton.textContent = choice.alternative.text;
-                        altButton.className = 'choice-button text-white font-bold py-2 px-4 rounded w-full';
-                        altButton.onclick = () => handleChoiceSelection(choice.alternative);
-                        choicesContainer.appendChild(altButton);
+                // If the choice has a requirement...
+                if (choice.requires) {
+                    if (isLocked) {
+                        // Render the locked, disabled primary choice
+                        const tooltipContainer = document.createElement('div');
+                        tooltipContainer.className = 'tooltip';
+                        const button = document.createElement('button');
+                        button.textContent = choice.text;
+                        button.className = 'choice-button text-white font-bold py-2 px-4 rounded w-full';
+                        button.disabled = true;
+                        const tooltipText = document.createElement('span');
+                        tooltipText.className = 'tooltiptext';
+                        tooltipText.textContent = `Requires ${statInfo[choice.requires.stat].name} > ${choice.requires.value}`;
+                        tooltipContainer.appendChild(button);
+                        tooltipContainer.appendChild(tooltipText);
+                        choicesContainer.appendChild(tooltipContainer);
+                        
+                        // Render the alternative choice as an enabled button
+                        if (choice.alternative) {
+                            const altButton = document.createElement('button');
+                            altButton.textContent = choice.alternative.text;
+                            altButton.className = 'choice-button text-white font-bold py-2 px-4 rounded w-full';
+                            altButton.onclick = () => handleChoiceSelection(choice.alternative);
+                            choicesContainer.appendChild(altButton);
+                        }
+                    } else {
+                        // Render the unlocked primary choice
+                        const button = document.createElement('button');
+                        button.textContent = choice.text;
+                        button.className = 'choice-button text-white font-bold py-2 px-4 rounded w-full';
+                        button.onclick = () => handleChoiceSelection(choice);
+                        choicesContainer.appendChild(button);
                     }
-                } else if (!choice.alternative) {
-                    // Render the normal, enabled primary choice
+                } else {
+                    // If the choice has no requirement, just render it normally.
                     const button = document.createElement('button');
                     button.textContent = choice.text;
                     button.className = 'choice-button text-white font-bold py-2 px-4 rounded w-full';
@@ -1054,6 +1072,7 @@
 
     function showDailyLife() {
         const round = gameData[currentRound];
+        const isHealthLow = stats.mentalHealth < 40 || stats.physicalHealth < 40;
         
         const totalScore = stats.peerSocial + stats.familySocial + stats.academic + stats.mentalHealth + stats.physicalHealth;
         const avgScore = totalScore / 5;
@@ -1069,35 +1088,55 @@
 
         const scene = {
             speaker: 'Narrator',
-            text: 'It\'s 4:00 PM. Time to decide what to do with the rest of the afternoon.',
+            text: isHealthLow ? 'Charlie feels completely drained, mentally and physically. It\'s hard to focus on anything productive right now.' : 'It\'s 4:00 PM. Time to decide what to do with the rest of the afternoon.',
             bg: backgrounds.home,
             sprite: charlieSprite,
         };
 
         choicesContainer.innerHTML = '';
+        choicesContainer.classList.add('grid-layout');
         nextButton.classList.add('hidden');
 
         const dailyChoices = [
-            { text: 'Hit the Books', data: round.dailyLife.study },
-            { text: 'Workout', data: round.dailyLife.exercise },
-            { text: 'Hang with Friends', data: round.dailyLife.friends },
-            { text: 'Get Up to Trouble...', data: round.dailyLife.trouble, isTrouble: true }
+            { text: 'Hit the Books', data: round.dailyLife.study, positive: true },
+            { text: 'Workout', data: round.dailyLife.exercise, positive: true },
+            { text: 'Hang with Friends', data: round.dailyLife.friends, positive: true },
+            { text: 'Get Up to Trouble...', data: round.dailyLife.trouble, isTrouble: true, positive: false }
         ];
         
         dailyChoices.forEach((choice) => {
+            const tooltipContainer = document.createElement('div');
+            tooltipContainer.className = 'tooltip';
             const button = document.createElement('button');
             button.textContent = choice.text;
             button.className = 'choice-button text-white font-bold py-2 px-4 rounded w-full';
+
+            if (isHealthLow && choice.positive) {
+                button.disabled = true;
+                const tooltipText = document.createElement('span');
+                tooltipText.className = 'tooltiptext';
+                tooltipText.textContent = `Charlie is too drained. Requires Health > 40.`;
+                tooltipContainer.appendChild(tooltipText);
+            }
+
             button.onclick = () => {
                 if (choice.isTrouble) {
                     handleTrouble(choice.data);
                 } else {
                     applyStatChanges(choice.data.effects);
-                    let nextStep = stats.flags.isGrounded ? showBackHome : (round.eveningEvent ? startEveningEvent : showBackHome);
+                    
+                    let shouldGoToEvent = round.eveningEvent && !stats.flags.isGrounded;
+                    // Specific check for Round 2 party invitation
+                    if (currentRound === 1 && !stats.flags.agreedToParty) {
+                        shouldGoToEvent = false;
+                    }
+
+                    let nextStep = shouldGoToEvent ? startEveningEvent : showBackHome;
                     nextStep();
                 }
             };
-            choicesContainer.appendChild(button);
+            tooltipContainer.appendChild(button);
+            choicesContainer.appendChild(tooltipContainer);
         });
 
         speakerName.textContent = scene.speaker;
@@ -1131,20 +1170,38 @@
         
         let nextStepAfterPopup = showBackHome; // Default
         const round = gameData[currentRound];
-        if (round.eveningEvent && !stats.flags.isGrounded) {
+        
+        let shouldGoToEvent = round.eveningEvent && !stats.flags.isGrounded;
+        // Specific check for Round 2 party invitation
+        if (currentRound === 1 && !stats.flags.agreedToParty) {
+            shouldGoToEvent = false;
+        }
+
+        if (shouldGoToEvent) {
             nextStepAfterPopup = startEveningEvent;
         }
 
         showPopup(outcome.popup, pendingStatChanges, nextStepAfterPopup);
     }
 
+    // --- CHANGE START ---
     function showBackHome() {
         const round = gameData[currentRound];
         const backHomeData = round.backHome;
+        let currentDialogue = '';
+        let availableChoices = {};
 
-        let currentDialogue = backHomeData.dialogue;
         if (stats.flags.isGrounded) {
             currentDialogue = backHomeData.groundedDialogue;
+            availableChoices = { negative: backHomeData.choices.negative };
+        } else if (currentRound === 1 && !stats.flags.agreedToParty) {
+            // This is the new logic for when Charlie skips the party in Round 2
+            currentDialogue = backHomeData.stayedInDialogue;
+            availableChoices = backHomeData.stayedInChoices;
+        } else {
+            // Default behavior for all other scenarios
+            currentDialogue = backHomeData.dialogue;
+            availableChoices = backHomeData.choices;
         }
 
         const scene = {
@@ -1155,14 +1212,15 @@
             choices: []
         };
         
-        if (stats.flags.isGrounded) {
-             scene.choices.push(backHomeData.choices.negative);
-        } else {
-            if (stats.familySocial > backHomeData.lowStatThreshold) {
-                scene.choices.push(backHomeData.choices.positive);
-            }
-            scene.choices.push(backHomeData.choices.neutral);
-            scene.choices.push(backHomeData.choices.negative);
+        // Build the choice array based on which choices are available
+        if (availableChoices.positive && stats.familySocial > backHomeData.lowStatThreshold) {
+            scene.choices.push(availableChoices.positive);
+        }
+        if (availableChoices.neutral) {
+            scene.choices.push(availableChoices.neutral);
+        }
+        if (availableChoices.negative) {
+            scene.choices.push(availableChoices.negative);
         }
 
         choicesContainer.innerHTML = '';
@@ -1194,6 +1252,7 @@
         characterSprite.src = scene.sprite;
         characterSprite.classList.remove('opacity-0');
     }
+    // --- CHANGE END ---
 
     function showRoundRecap() {
         let failingStats = [];
@@ -1365,6 +1424,13 @@
             dialogueText.textContent = "boo hoo hoo";
             characterSprite.src = sprites.charlie_sad;
             choicesContainer.innerHTML = '';
+
+            const finalPenalty = { 
+                peerSocial: -stats.peerSocial, // Drop stat to 0
+                mentalHealth: -stats.mentalHealth // Drop stat to 0
+            };
+            applyStatChanges(finalPenalty);
+
             const finalButton = document.createElement('button');
             finalButton.textContent = '...';
             finalButton.className = 'choice-button text-white font-bold py-2 px-4 rounded w-full';
@@ -1482,4 +1548,3 @@
 </script>
 </body>
 </html>
-
