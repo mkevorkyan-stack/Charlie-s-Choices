@@ -193,6 +193,8 @@
 </head>
 <body class="bg-gray-900 flex items-center justify-center h-screen">
 
+    <audio id="backgroundMusic" loop src="https://archive.org/download/Peaceful_Mind-Music_for_Video/Peaceful%20Mind-Music%20for%20Video.mp3"></audio>
+
     <div id="gameContainer" class="game-container bg-black mx-auto">
         <img id="backgroundImage" class="background-image" src="" alt="Game Background">
         <img id="characterSprite" class="character-sprite opacity-0" src="" alt="Character Sprite">
@@ -301,7 +303,8 @@
     const choicesContainer = document.getElementById('choicesContainer');
     const nextButton = document.getElementById('nextButton');
     const statFeedbackContainer = document.getElementById('statFeedbackContainer');
-    
+    const backgroundMusic = document.getElementById('backgroundMusic');
+
     // Stats
     const statFills = {
         peerSocial: document.getElementById('peerSocialFill'),
@@ -843,6 +846,8 @@
     }
 
     function startGame() {
+        backgroundMusic.volume = 0.3; 
+        backgroundMusic.play();
         stats = {
             peerSocial: 70,
             familySocial: 70,
@@ -1526,7 +1531,7 @@
         let personalPassing = true;
         for (const stat in stats) {
             if (stat === 'flags' || stat === 'alexHealth') continue;
-            if (stats[stat] < 70) personalPassing = false; // Pass mark is 70
+            if (stats[stat] < 70) personalPassing = false; 
         }
         const alexPassing = stats.alexHealth > 2;
 
