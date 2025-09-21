@@ -257,10 +257,10 @@
                    Welcome! You will guide a freshman named Charlie through their first semester. Your goal is to not only survive, but thrive.
                  </p>
                  <ul class="text-left list-disc list-inside mb-6 space-y-2">
-                   <li><b class="text-green-400">The Goal:</b> Finish 5 rounds with all your personal stats above **70**.</li>
+                   <li><b class="text-green-400">The Goal:</b> Finish 5 rounds with all your personal stats above **85**.</li>
                    <li><b class="text-blue-400">Support Your Friends:</b> Your choices don't just affect you. Your friendship with Alex will be tracked. Being a supportive friend is crucial. **You cannot win the game if Alex is not in a good place by the end, regardless of your own stats.**</li>
                    <li><b class="text-yellow-400">Stat Decay:</b> Life requires constant effort. At the end of each round, every stat will naturally decrease by 4 points. You must actively maintain them!</li>
-                   <li><b class="text-red-400">Stress & Burnout:</b> If a stat drops below 70, it creates a 'stress penalty' on all other stats. If any stat falls below 30, it triggers a 'burnout,' causing a massive penalty.</li>
+                   <li><b class="text-red-400">Stress & Burnout:</b> If a stat drops below 85, it creates a 'stress penalty' on all other stats. If any stat falls below 30, it triggers a 'burnout,' causing a massive penalty.</li>
                  </ul>
                  <button id="startButton" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-4 px-8 rounded-lg text-2xl shadow-lg">Begin Semester</button>
             </div>
@@ -1314,7 +1314,7 @@
 
         let failingStats = [];
         for (const stat in statInfo) {
-            if (stats[stat] + (penaltyEffects[stat] || 0) < 70) { // Pass mark back to 70
+            if (stats[stat] + (penaltyEffects[stat] || 0) < 85) { // Pass mark is now 85
                 failingStats.push(statInfo[stat].name);
             }
         }
@@ -1526,7 +1526,7 @@
         let personalPassing = true;
         for (const stat in stats) {
             if (stat === 'flags' || stat === 'alexHealth') continue;
-            if (stats[stat] < 70) personalPassing = false; // Pass mark back to 70
+            if (stats[stat] < 85) personalPassing = false; // New pass mark
         }
         const alexPassing = stats.alexHealth > 2;
 
@@ -1554,19 +1554,19 @@
             let analysisText = '';
             
             if (stat === 'mentalHealth') {
-                if (finalScore >= 70) analysisText = 'This was your core strength. Strong Mental Health gave you the resilience to handle academic pressure and navigate social challenges effectively.';
+                if (finalScore >= 85) analysisText = 'This was your core strength. Strong Mental Health gave you the resilience to handle academic pressure and navigate social challenges effectively.';
                 else analysisText = 'Low Mental Health was your biggest challenge. This made it harder to study (affecting Academics), engage with friends (Peer Social), and communicate openly with family (Family Social).';
             } else if (stat === 'peerSocial') {
-                if (finalScore >= 70) analysisText = 'You built a strong social circle! These positive relationships provided crucial support for your Mental Health, especially during stressful times like midterms.';
+                if (finalScore >= 85) analysisText = 'You built a strong social circle! These positive relationships provided crucial support for your Mental Health, especially during stressful times like midterms.';
                 else analysisText = 'Feeling isolated from peers put a strain on your Mental Health. Without a strong support system at school, academic and family stress felt more overwhelming.';
             } else if (stat === 'familySocial') {
-                 if (finalScore >= 70) analysisText = 'A trusting relationship at home was a great foundation. This stability buffered your Mental Health and gave you a safe space to decompress.';
+                 if (finalScore >= 85) analysisText = 'A trusting relationship at home was a great foundation. This stability buffered your Mental Health and gave you a safe space to decompress.';
                 else analysisText = 'Tension at home was a major source of stress, which directly lowered your Mental Health and made it difficult to focus on your schoolwork (Academics).';
             } else if (stat === 'academic') {
-                if (finalScore >= 70) analysisText = 'You did well in your classes! This success boosted your confidence and positively impacted your Mental Health.';
-                else analysisText = `Struggling academically was a significant source of stress. This likely connects to your low ${stats.physicalHealth < 70 ? 'Physical Health' : 'Mental Health'}, as lack of sleep or high anxiety makes it hard to learn.`;
+                if (finalScore >= 85) analysisText = 'You did well in your classes! This success boosted your confidence and positively impacted your Mental Health.';
+                else analysisText = `Struggling academically was a significant source of stress. This likely connects to your low ${stats.physicalHealth < 85 ? 'Physical Health' : 'Mental Health'}, as lack of sleep or high anxiety makes it hard to learn.`;
             } else if (stat === 'physicalHealth') {
-                if (finalScore >= 70) analysisText = 'Great job taking care of yourself! Getting enough sleep and exercise gave you the energy to succeed (Academics) and the resilience to manage stress (Mental Health).';
+                if (finalScore >= 85) analysisText = 'Great job taking care of yourself! Getting enough sleep and exercise gave you the energy to succeed (Academics) and the resilience to manage stress (Mental Health).';
                 else analysisText = 'Not prioritizing sleep and well-being directly impacted your ability to focus in class (Academics) and manage your mood (Mental Health).';
             }
 
