@@ -254,13 +254,13 @@
             <div id="instructionsScreen" class="hidden bg-gray-800 p-8 rounded-lg max-w-lg">
                  <h2 class="text-3xl font-bold mb-4">How to Play</h2>
                  <p class="text-left mb-4">
-                   Welcome! You will guide a freshman named Charlie through their first semester. Your goal is to make choices that keep all five of Charlie's life stats above 70.
+                   Welcome! You will guide a freshman named Charlie through their first semester. Your goal is to not only survive, but thrive.
                  </p>
                  <ul class="text-left list-disc list-inside mb-6 space-y-2">
-                   <li><b>The Goal:</b> Finish 5 rounds with all stats above 70 to pass.</li>
-                   <li><b class="text-yellow-400">Stat Decay:</b> Life requires constant effort. At the end of each round, every stat will naturally decrease by 7 points. You must actively maintain them!</li>
+                   <li><b class="text-green-400">The Goal:</b> Finish 5 rounds with all your personal stats above **70**.</li>
+                   <li><b class="text-blue-400">Support Your Friends:</b> Your choices don't just affect you. Your friendship with Alex will be tracked. Being a supportive friend is crucial. **You cannot win the game if Alex is not in a good place by the end, regardless of your own stats.**</li>
+                   <li><b class="text-yellow-400">Stat Decay:</b> Life requires constant effort. At the end of each round, every stat will naturally decrease by 4 points. You must actively maintain them!</li>
                    <li><b class="text-red-400">Stress & Burnout:</b> If a stat drops below 70, it creates a 'stress penalty' on all other stats. If any stat falls below 30, it triggers a 'burnout,' causing a massive penalty.</li>
-                   <li><b>Balance is Everything:</b> Every choice has a trade-off. Choosing to study helps grades but hurts your social life. Choosing to party helps socially but hurts your health and family trust. There are no perfect choices.</li>
                  </ul>
                  <button id="startButton" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-4 px-8 rounded-lg text-2xl shadow-lg">Begin Semester</button>
             </div>
@@ -375,7 +375,7 @@
         alex_homecoming: 'https://i.postimg.cc/bJ0NHjVF/Alex-Homecoming.png',
     };
     
-    // --- GAME DATA (DIFFICULTY INCREASED) ---
+    // --- GAME DATA (PENALTIES REDUCED BY 40%) ---
     const gameData = [
         // ROUND 1: FIRST DAY
         {
@@ -384,42 +384,42 @@
                 { 
                     speaker: 'Charlie', text: 'Lunchtime. The cafeteria is packed. I see a few tables... one has some kids from my English class, and there\'s an empty one in the corner.',
                     choices: [
-                        { text: 'Approach the kids from English class.', effects: { peerSocial: 12, mentalHealth: 5, academic: -5 }, popup: { type: 'positive', header: 'Good Move!', why: 'You took a social risk and it paid off, though you didn\'t get to look over your notes.', bigPicture: 'Building new relationships often means sacrificing time you could have spent on other things, like schoolwork.', reward: 'A boost to Peer Social and Mental Health at a small Academic cost.' } },
-                        { text: 'Sit alone in the corner.', effects: { mentalHealth: -10, peerSocial: -5 }, popup: { type: 'negative', header: 'Heads-Up: Social Isolation', why: 'While it feels safe, avoiding social situations can increase feelings of loneliness.', bigPicture: 'Consistently isolating yourself can negatively impact your mental health and prevent you from making friends.', betterWay: 'Even a small step, like sitting near a group without talking, can be a good start.' } },
+                        { text: 'Approach the kids from English class.', effects: { peerSocial: 12, mentalHealth: 5, academic: -3 }, popup: { type: 'positive', header: 'Good Move!', why: 'You took a social risk and it paid off, though you didn\'t get to look over your notes.', bigPicture: 'Building new relationships often means sacrificing time you could have spent on other things, like schoolwork.', reward: 'A boost to Peer Social and Mental Health at a small Academic cost.' } },
+                        { text: 'Sit alone in the corner.', effects: { mentalHealth: -6, peerSocial: -3 }, popup: { type: 'negative', header: 'Heads-Up: Social Isolation', why: 'While it feels safe, avoiding social situations can increase feelings of loneliness.', bigPicture: 'Consistently isolating yourself can negatively impact your mental health and prevent you from making friends.', betterWay: 'Even a small step, like sitting near a group without talking, can be a good start.' } },
                     ]
                 },
                 { speaker: 'Alex', text: 'Hey, you\'re Charlie, right? I\'m Alex. Cool shirt.', sprite: sprites.alex_neutral },
                 {
                     speaker: 'Charlie', text: 'Oh, uh, thanks!',
                     choices: [
-                        { text: 'Return the compliment. "Thanks! I like your shoes."', effects: { peerSocial: 10 }, popup: { type: 'positive', header: 'Nice!', why: 'A simple compliment is an easy way to build rapport.', bigPicture: 'Positive social interactions can boost your mood and make others feel good too.', reward: 'A boost to Peer Social.'} },
-                        { text: 'Just nod awkwardly.', effects: { peerSocial: -5, mentalHealth: -5 }, popup: { type: 'negative', header: 'Missed Opportunity', why: 'It felt awkward, so you shut down the conversation, which made you feel a little worse.', bigPicture: 'Social skills take practice. Every small interaction is a chance to build confidence.', betterWay: 'If you get nervous, just ask them a question about themselves.'} },
+                        { text: 'Return the compliment. "Thanks! I like your shoes."', effects: { peerSocial: 10 }, alexEffect: 1, popup: { type: 'positive', header: 'Nice!', why: 'A simple compliment is an easy way to build rapport.', bigPicture: 'Positive social interactions can boost your mood and make others feel good too.', reward: 'A boost to Peer Social.'} },
+                        { text: 'Just nod awkwardly.', effects: { peerSocial: -3, mentalHealth: -3 }, alexEffect: -1, popup: { type: 'negative', header: 'Missed Opportunity', why: 'It felt awkward, so you shut down the conversation, which made you feel a little worse.', bigPicture: 'Social skills take practice. Every small interaction is a chance to build confidence.', betterWay: 'If you get nervous, just ask them a question about themselves.'} },
                     ]
                 },
                 { speaker: 'Narrator', text: 'In History class, the teacher asks a question you know the answer to.', bg: backgrounds.classroom, sprite: sprites.charlie_neutral },
                 {
                     speaker: 'Charlie', text: 'Should I raise my hand?',
                     choices: [
-                        { text: 'Yes, answer the question.', effects: { academic: 8, mentalHealth: 5, peerSocial: -5 }, popup: { type: 'positive', header: 'Confidence Boost!', why: 'You participated in class, though some classmates might see it as showing off.', bigPicture: 'Engaging in class helps you learn, but social dynamics can be complex.', reward: 'A good boost to Academic and Mental Health.'} },
-                        { text: 'No, don\'t draw attention to yourself.', effects: { mentalHealth: -8 }, popup: { type: 'negative', header: 'Heads-Up: Anxiety', why: 'Fear of being judged made you stay quiet, even when you knew the answer.', bigPicture: 'Letting anxiety control your actions can prevent you from reaching your full potential.', betterWay: 'Take a deep breath and take the risk. The reward is feeling proud of yourself.'} },
+                        { text: 'Yes, answer the question.', effects: { academic: 8, mentalHealth: 5, peerSocial: -3 }, popup: { type: 'positive', header: 'Confidence Boost!', why: 'You participated in class, though some classmates might see it as showing off.', bigPicture: 'Engaging in class helps you learn, but social dynamics can be complex.', reward: 'A good boost to Academic and Mental Health.'} },
+                        { text: 'No, don\'t draw attention to yourself.', effects: { mentalHealth: -5 }, popup: { type: 'negative', header: 'Heads-Up: Anxiety', why: 'Fear of being judged made you stay quiet, even when you knew the answer.', bigPicture: 'Letting anxiety control your actions can prevent you from reaching your full potential.', betterWay: 'Take a deep breath and take the risk. The reward is feeling proud of yourself.'} },
                     ]
                 },
                 { speaker: 'Narrator', text: 'On the way to your next class, you see a student drop a huge pile of books.', bg: backgrounds.hallway, sprite: sprites.charlie_neutral },
                 {
                     speaker: 'Charlie', text: 'What should I do?',
                     choices: [
-                        { text: 'Help them pick up their books.', effects: { peerSocial: 10, academic: -3 }, popup: { type: 'positive', header: 'Good Karma!', why: 'A small act of kindness can make someone\'s day, but it did make you a little late for your next class.', bigPicture: 'Empathy and helping others are cornerstones of a positive school community.', reward: 'A boost to Peer Social.'} },
-                        { text: 'Pretend you didn\'t see and walk past.', effects: { peerSocial: -5, mentalHealth: -5 }, popup: { type: 'negative', header: 'Heads-Up: Bystander Effect', why: 'It was easier to keep walking than to get involved.', bigPicture: 'Sometimes we assume someone else will help, but being the person who takes action builds character.', betterWay: 'It only takes a moment to help, and it can make a big difference.'} },
+                        { text: 'Help them pick up their books.', effects: { peerSocial: 10, academic: -2 }, popup: { type: 'positive', header: 'Good Karma!', why: 'A small act of kindness can make someone\'s day, but it did make you a little late for your next class.', bigPicture: 'Empathy and helping others are cornerstones of a positive school community.', reward: 'A boost to Peer Social.'} },
+                        { text: 'Pretend you didn\'t see and walk past.', effects: { peerSocial: -3, mentalHealth: -3 }, popup: { type: 'negative', header: 'Heads-Up: Bystander Effect', why: 'It was easier to keep walking than to get involved.', bigPicture: 'Sometimes we assume someone else will help, but being the person who takes action builds character.', betterWay: 'It only takes a moment to help, and it can make a big difference.'} },
                     ]
                 }
             ],
             dailyLife: {
-                study: { effects: { academic: 22, peerSocial: -12, mentalHealth: -12, physicalHealth: -5 } },
-                exercise: { effects: { physicalHealth: 18, mentalHealth: 12, academic: -12 } },
-                friends: { effects: { peerSocial: 18, mentalHealth: 8, academic: -18 } },
+                study: { effects: { academic: 22, peerSocial: -7, mentalHealth: -7, physicalHealth: -3 } },
+                exercise: { effects: { physicalHealth: 18, mentalHealth: 12, academic: -7 } },
+                friends: { effects: { peerSocial: 18, mentalHealth: 8, academic: -11, alexEffect: 1 } },
                 trouble: { 
-                    success: { effects: { peerSocial: 10, mentalHealth: -5 }, flag: 'snuckIntoMovie', popup: { type: 'positive', header: 'Got Away With It...', why: 'You decided to sneak into a movie without paying. The thrill was exciting, but the anxiety of getting caught lingered.', bigPicture: 'Small risks can have big consequences, and the stress often outweighs the reward.', reward: '+10 Peer Social, -5 Mental Health.'} },
-                    failure: { effects: { familySocial: -20, academic: -15, mentalHealth: -15, physicalHealth: -15 }, popup: { type: 'negative', header: 'Busted!', why: 'You decided to sneak into a movie without paying. An usher\'s flashlight caught you. They called security, who then called your parents.', bigPicture: 'This will have a major impact on your family\'s trust and your freedom.', betterWay: 'There are plenty of fun, low-cost things to do that don\'t involve breaking rules.'} }
+                    success: { effects: { peerSocial: 10, mentalHealth: -3 }, flag: 'snuckIntoMovie', popup: { type: 'positive', header: 'Got Away With It...', why: 'You decided to sneak into a movie without paying. The thrill was exciting, but the anxiety of getting caught lingered.', bigPicture: 'Small risks can have big consequences, and the stress often outweighs the reward.', reward: '+10 Peer Social, -3 Mental Health.'} },
+                    failure: { effects: { familySocial: -12, academic: -9, mentalHealth: -9, physicalHealth: -9 }, popup: { type: 'negative', header: 'Busted!', why: 'You decided to sneak into a movie without paying. An usher\'s flashlight caught you. They called security, who then called your parents.', bigPicture: 'This will have a major impact on your family\'s trust and your freedom.', betterWay: 'There are plenty of fun, low-cost things to do that don\'t involve breaking rules.'} }
                 }
             },
             backHome: {
@@ -427,8 +427,8 @@
                 dialogue: "So, honey, how was your first day? Make any friends?",
                 choices: {
                     positive: { text: "It was okay. I met a nice person named Alex.", effects: { familySocial: 10 } },
-                    neutral: { text: "It was fine. Just school.", effects: { familySocial: -5 } },
-                    negative: { text: "It was overwhelming. Leave me alone.", effects: { familySocial: -15, mentalHealth: -5 } }
+                    neutral: { text: "It was fine. Just school.", effects: { familySocial: -3 } },
+                    negative: { text: "It was overwhelming. Leave me alone.", effects: { familySocial: -9, mentalHealth: -3 } }
                 }
             }
         },
@@ -439,7 +439,7 @@
                 { 
                     speaker: 'Narrator', text: 'In Math class, the teacher springs a pop quiz.', bg: backgrounds.classroom, sprite: sprites.charlie_stressed,
                     choices: [
-                        { text: 'Panic. I didn\'t study for this!', effects: { mentalHealth: -10, academic: -5 }, popup: { type: 'negative', header: 'Heads-Up: Test Anxiety', why: 'Sudden tests can be stressful, and panicking makes it harder to think clearly, hurting your performance.', bigPicture: 'Learning to manage unexpected stress is a key life skill.', betterWay: 'Take a deep breath. Do your best with what you know. One quiz won\'t define your grade.' } },
+                        { text: 'Panic. I didn\'t study for this!', effects: { mentalHealth: -6, academic: -3 }, popup: { type: 'negative', header: 'Heads-Up: Test Anxiety', why: 'Sudden tests can be stressful, and panicking makes it harder to think clearly, hurting your performance.', bigPicture: 'Learning to manage unexpected stress is a key life skill.', betterWay: 'Take a deep breath. Do your best with what you know. One quiz won\'t define your grade.' } },
                         { text: 'Take a deep breath and focus.', effects: { mentalHealth: 5, academic: 5 }, popup: { type: 'positive', header: 'Good Coping!', why: 'You managed your initial stress and focused on the task.', bigPicture: 'Mindfulness techniques, like deep breathing, are proven to help manage anxiety.', reward: 'Boost to Mental and Academic stats.' } },
                     ]
                 },
@@ -447,16 +447,16 @@
                 {
                     speaker: 'Charlie', text: 'I have my own stuff to do, but...',
                     choices: [
-                        { text: 'Help Alex with their work.', effects: { peerSocial: 12, academic: -10 }, popup: { type: 'negative', header: 'Heads-Up: Time Management', why: 'Helping a friend is great, but it came at the cost of your own study time.', bigPicture: 'Balancing social commitments with personal responsibilities is a constant challenge.', betterWay: 'Try saying, "I can help for a bit, but then I have to finish my own work."' } },
-                        { text: 'Politely say you\'re busy.', effects: { academic: 8, peerSocial: -10 }, popup: { type: 'positive', header: 'Setting Boundaries', why: 'You prioritized your responsibilities, but Alex seemed a little disappointed.', bigPicture: 'It\'s okay to say no. Protecting your own time is not selfish, but friendships require nurturing too.', reward: 'A boost to your Academic stat.'} },
+                        { text: 'Help Alex with their work.', effects: { peerSocial: 12, academic: -6 }, alexEffect: 1, popup: { type: 'negative', header: 'Heads-Up: Time Management', why: 'Helping a friend is great, but it came at the cost of your own study time.', bigPicture: 'Balancing social commitments with personal responsibilities is a constant challenge.', betterWay: 'Try saying, "I can help for a bit, but then I have to finish my own work."' } },
+                        { text: 'Politely say you\'re busy.', effects: { academic: 8, peerSocial: -6 }, alexEffect: -1, popup: { type: 'positive', header: 'Setting Boundaries', why: 'You prioritized your responsibilities, but Alex seemed a little disappointed.', bigPicture: 'It\'s okay to say no. Protecting your own time is not selfish, but friendships require nurturing too.', reward: 'A boost to your Academic stat.'} },
                     ]
                 },
                 { speaker: 'Alex', text: 'Thanks for the help! Hey, there\'s a party at Maya\'s house tonight. You should come!', bg: backgrounds.library },
                 {
                     speaker: 'Charlie', text: 'A party? I don\'t know...',
                     choices: [
-                        { text: 'Agree to go.', effects: { peerSocial: 10, mentalHealth: 5 }, flag: 'agreedToParty', popup: { type: 'positive', header: 'Invitation Accepted!', why: 'You agreed to go to your first high school party!', bigPicture: 'Social events are a big part of the high school experience.', reward: '+10 Peer Social.'} },
-                        { text: 'Decline the invitation.', effects: { peerSocial: -12, academic: 8 }, popup: { type: 'negative', header: 'Heads-Up: Staying In', why: 'You turned down a chance to socialize, but you did get some extra studying done.', bigPicture: 'It is okay to not want to go to parties, but it might make it harder to build friendships.', betterWay: 'Even if you can\'t go, you could say "Thanks for inviting me! Maybe next time!"'}}
+                        { text: 'Agree to go.', effects: { peerSocial: 10, mentalHealth: 5 }, alexEffect: 1, flag: 'agreedToParty', popup: { type: 'positive', header: 'Invitation Accepted!', why: 'You agreed to go to your first high school party!', bigPicture: 'Social events are a big part of the high school experience.', reward: '+10 Peer Social.'} },
+                        { text: 'Decline the invitation.', effects: { peerSocial: -7, academic: 8 }, alexEffect: -1, popup: { type: 'negative', header: 'Heads-Up: Staying In', why: 'You turned down a chance to socialize, but you did get some extra studying done.', bigPicture: 'It is okay to not want to go to parties, but it might make it harder to build friendships.', betterWay: 'Even if you can\'t go, you could say "Thanks for inviting me! Maybe next time!"'}}
                     ]
                 },
                 { speaker: 'Narrator', text: 'At lunch, you overhear some classmates spreading a mean rumor about another student.', bg: backgrounds.hallway, sprite: sprites.charlie_neutral },
@@ -464,17 +464,17 @@
                     speaker: 'Charlie', text: 'That\'s not true... I think.',
                     choices: [
                         { text: 'Change the subject.', effects: { peerSocial: 5, mentalHealth: 5 }, popup: { type: 'positive', header: 'Good Move: Upstander', why: 'You didn\'t participate in the gossip and subtly redirected the conversation.', bigPicture: 'You don\'t have to confront people to make a difference. Refusing to participate in harmful gossip is a powerful choice.', reward: 'Boosts to Peer Social and Mental Health.' } },
-                        { text: 'Listen in, but stay quiet.', effects: { mentalHealth: -8, peerSocial: -3 }, popup: { type: 'negative', header: 'Heads-Up: Bystander', why: 'Staying silent in the face of gossip can feel like agreeing with it, which negatively affects your self-perception.', bigPicture: 'Gossip can cause serious harm to a person\'s reputation and mental health.', betterWay: 'Simply saying "Hey, let\'s not talk about them" is a brave and effective way to shut it down.'} },
+                        { text: 'Listen in, but stay quiet.', effects: { mentalHealth: -5, peerSocial: -2 }, popup: { type: 'negative', header: 'Heads-Up: Bystander', why: 'Staying silent in the face of gossip can feel like agreeing with it, which negatively affects your self-perception.', bigPicture: 'Gossip can cause serious harm to a person\'s reputation and mental health.', betterWay: 'Simply saying "Hey, let\'s not talk about them" is a brave and effective way to shut it down.'} },
                     ]
                 }
             ],
             dailyLife: {
-                study: { effects: { academic: 22, peerSocial: -12, mentalHealth: -12, physicalHealth: -5 } },
-                exercise: { effects: { physicalHealth: 18, mentalHealth: 12, academic: -12 } },
-                friends: { effects: { peerSocial: 18, mentalHealth: 8, academic: -18 } },
+                study: { effects: { academic: 22, peerSocial: -7, mentalHealth: -7, physicalHealth: -3 } },
+                exercise: { effects: { physicalHealth: 18, mentalHealth: 12, academic: -7 } },
+                friends: { effects: { peerSocial: 18, mentalHealth: 8, academic: -11, alexEffect: 1 } },
                 trouble: {
-                    success: { effects: { peerSocial: 12, physicalHealth: -10 }, flag: 'hasVapePen', popup: { type: 'positive', header: 'A Risky Purchase...', why: 'An upperclassman offered to sell you a vape pen. The stress of the secret is already getting to you.', bigPicture: 'Owning a vape pen at school poses health risks and the risk of getting caught later.', reward: '+12 Peer Social.'} },
-                    failure: { effects: { familySocial: -20, academic: -15, mentalHealth: -15, physicalHealth: -15, peerSocial: -20 }, popup: { type: 'negative', header: 'Busted!', why: 'An upperclassman offered to sell you a vape pen. During the exchange behind the gym, a teacher rounded the corner. You were both caught red-handed.', bigPicture: 'This suspension means you\'re grounded. No party for you, and you had to cancel on Alex.', betterWay: 'The risks of buying or owning these products are never worth the perceived social gain.'} }
+                    success: { effects: { peerSocial: 12, physicalHealth: -6 }, flag: 'hasVapePen', popup: { type: 'positive', header: 'A Risky Purchase...', why: 'An upperclassman offered to sell you a vape pen. The stress of the secret is already getting to you.', bigPicture: 'Owning a vape pen at school poses health risks and the risk of getting caught later.', reward: '+12 Peer Social.'} },
+                    failure: { effects: { familySocial: -12, academic: -9, mentalHealth: -9, physicalHealth: -9, peerSocial: -12 }, popup: { type: 'negative', header: 'Busted!', why: 'An upperclassman offered to sell you a vape pen. During the exchange behind the gym, a teacher rounded the corner. You were both caught red-handed.', bigPicture: 'This suspension means you\'re grounded. No party for you, and you had to cancel on Alex.', betterWay: 'The risks of buying or owning these products are never worth the perceived social gain.'} }
                 }
             },
             eveningEvent: [
@@ -482,32 +482,32 @@
                 {
                     speaker: 'Charlie', text: 'It\'s... loud. I don\'t know anyone.',
                     choices: [
-                        { text: 'Stick with Alex.', effects: { peerSocial: 5 }, popup: { type: 'positive', header: 'Smart Move', why: 'Staying with a friend in a new environment is a good way to feel more comfortable.', bigPicture: 'Using a buddy system is a recognized strategy for staying safe in social situations.', reward: '+5 Peer Social.'} },
-                        { text: 'Go explore on your own.', effects: { mentalHealth: 5, peerSocial: -2 }, popup: { type: 'positive', header: 'Feeling Brave!', why: 'You chose to step out of your comfort zone, but it was a bit nerve-wracking at first.', bigPicture: 'Building self-reliance is an important part of growing up.', reward: '+5 Mental Health.'} },
+                        { text: 'Stick with Alex.', effects: { peerSocial: 5 }, alexEffect: 1, popup: { type: 'positive', header: 'Smart Move', why: 'Staying with a friend in a new environment is a good way to feel more comfortable.', bigPicture: 'Using a buddy system is a recognized strategy for staying safe in social situations.', reward: '+5 Peer Social.'} },
+                        { text: 'Go explore on your own.', effects: { mentalHealth: 5, peerSocial: -1 }, alexEffect: -1, popup: { type: 'positive', header: 'Feeling Brave!', why: 'You chose to step out of your comfort zone, but it was a bit nerve-wracking at first.', bigPicture: 'Building self-reliance is an important part of growing up.', reward: '+5 Mental Health.'} },
                     ]
                 },
                 { speaker: 'Alex', text: 'I\'m gonna grab a drink. You want some "punch"?' },
                 {
                     speaker: 'Narrator', text: 'The "punch" smells suspiciously like cheap beer.',
                     choices: [
-                        { text: 'Politely refuse. "No thanks, I\'m good for now."', effects: { mentalHealth: 12, peerSocial: -10 }, alexEffect: 1, popup: { type: 'positive', header: 'Skill Unlocked: Assertive Refusal', why: 'You confidently stated your boundary, but it definitely made you stand out.', bigPicture: 'Effective refusal skills allow you to maintain control over your health, even if it has social costs.', reward: 'Boost to Mental Health.' } },
-                        { text: 'Take the cup to fit in.', effects: { peerSocial: 15, physicalHealth: -25, mentalHealth: -5 }, alexEffect: -1, popup: { type: 'negative', header: 'Heads-Up: Underage Drinking', why: 'Giving in to peer pressure has immediate health consequences.', bigPicture: 'Your brain is still developing. Alcohol can harm memory and learning functions. (CA Standard 1.1.A)', betterWay: 'A simple "No thanks" is all you need. Real friends won\'t pressure you.' } },
+                        { text: 'Politely refuse. "No thanks, I\'m good for now."', effects: { mentalHealth: 12, peerSocial: -6 }, alexEffect: 1, popup: { type: 'positive', header: 'Skill Unlocked: Assertive Refusal', why: 'You confidently stated your boundary, but it definitely made you stand out.', bigPicture: 'Effective refusal skills allow you to maintain control over your health, even if it has social costs.', reward: 'Boost to Mental Health.' } },
+                        { text: 'Take the cup to fit in.', effects: { peerSocial: 15, physicalHealth: -15, mentalHealth: -3 }, alexEffect: -1, popup: { type: 'negative', header: 'Heads-Up: Underage Drinking', why: 'Giving in to peer pressure has immediate health consequences.', bigPicture: 'Your brain is still developing. Alcohol can harm memory and learning functions. (CA Standard 1.1.A)', betterWay: 'A simple "No thanks" is all you need. Real friends won\'t pressure you.' } },
                     ]
                 },
                 { speaker: 'Narrator', text: 'You see a few kids vaping in the corner. One of them sees you looking and offers you their vape pen.', sprite: sprites.charlie_neutral },
                 {
                     speaker: 'Charlie', text: 'They\'re all watching me.',
                     choices: [
-                        { text: 'Take a puff.', effects: { peerSocial: 10, physicalHealth: -25, familySocial: -5, mentalHealth: -5 }, popup: { type: 'negative', header: 'Heads-Up: Vaping', why: 'Just one puff can contain high levels of nicotine, a highly addictive substance.', bigPicture: 'Most vapes contain nicotine. Nicotine is especially harmful to teenage brain development. (CA Standard 1.2.A)', betterWay: 'Walk away or use a simple refusal like "Not my thing."' } },
-                        { text: 'Shake your head and walk away.', effects: { mentalHealth: 12, peerSocial: -12 }, popup: { type: 'positive', header: 'Good Move!', why: 'You removed yourself from a high-pressure situation, but distanced yourself from that group.', bigPicture: 'Knowing when to walk away is just as important as knowing what to say.', reward: 'A boost to your Mental Health.' } },
+                        { text: 'Take a puff.', effects: { peerSocial: 10, physicalHealth: -15, familySocial: -3, mentalHealth: -3 }, popup: { type: 'negative', header: 'Heads-Up: Vaping', why: 'Just one puff can contain high levels of nicotine, a highly addictive substance.', bigPicture: 'Most vapes contain nicotine. Nicotine is especially harmful to teenage brain development. (CA Standard 1.2.A)', betterWay: 'Walk away or use a simple refusal like "Not my thing."' } },
+                        { text: 'Shake your head and walk away.', effects: { mentalHealth: 12, peerSocial: -7 }, popup: { type: 'positive', header: 'Good Move!', why: 'You removed yourself from a high-pressure situation, but distanced yourself from that group.', bigPicture: 'Knowing when to walk away is just as important as knowing what to say.', reward: 'A boost to your Mental Health.' } },
                     ]
                 },
                 { speaker: 'Narrator', text: 'It\'s getting late and your phone buzzes. It\'s a text from Mom: "Don\'t forget your curfew!"', sprite: sprites.charlie_stressed },
                 {
                     speaker: 'Charlie', text: 'The party is just getting started, but...',
                     choices: [
-                        { text: 'Leave and respect curfew.', effects: { familySocial: 15, peerSocial: -12, mentalHealth: 5 }, popup: { type: 'positive', header: 'Responsible Choice', why: 'You kept your promise, which builds trust, even if your friends were disappointed you left early.', bigPicture: 'Following through on agreements is a sign of maturity and helps you earn more independence.', reward: '+15 Family Social.'} },
-                        { text: 'Stay another hour.', effects: { peerSocial: 15, familySocial: -20, mentalHealth: -5 }, popup: { type: 'negative', header: 'Heads-Up: Breaking Trust', why: 'Staying out late created a fun memory but will damage your parents\' trust and increase your stress.', bigPicture: 'Trust is easy to break and hard to rebuild. It can lead to stricter rules and more conflict.', betterWay: 'Communicate. A text like "Is it okay if I stay 30 mins longer?" is better than breaking a rule.'} },
+                        { text: 'Leave and respect curfew.', effects: { familySocial: 15, peerSocial: -7, mentalHealth: 5 }, alexEffect: 1, popup: { type: 'positive', header: 'Responsible Choice', why: 'You kept your promise, which builds trust, even if your friends were disappointed you left early.', bigPicture: 'Following through on agreements is a sign of maturity and helps you earn more independence.', reward: '+15 Family Social.'} },
+                        { text: 'Stay another hour.', effects: { peerSocial: 15, familySocial: -12, mentalHealth: -3 }, alexEffect: -1, popup: { type: 'negative', header: 'Heads-Up: Breaking Trust', why: 'Staying out late created a fun memory but will damage your parents\' trust and increase your stress.', bigPicture: 'Trust is easy to break and hard to rebuild. It can lead to stricter rules and more conflict.', betterWay: 'Communicate. A text like "Is it okay if I stay 30 mins longer?" is better than breaking a rule.'} },
                     ]
                 }
             ],
@@ -516,15 +516,15 @@
                 dialogue: "You're home. How was your night?",
                 choices: {
                     positive: { text: "It was fine. I got home on time like I promised.", effects: { familySocial: 10 } },
-                    neutral: { text: "It was just a party. Nothing happened.", effects: { familySocial: -5 } },
-                    negative: { text: "Why are you always waiting up for me?", effects: { familySocial: -15, mentalHealth: -5 } }
+                    neutral: { text: "It was just a party. Nothing happened.", effects: { familySocial: -3 } },
+                    negative: { text: "Why are you always waiting up for me?", effects: { familySocial: -9, mentalHealth: -3 } }
                 },
                 groundedDialogue: "You're grounded, remember? No party tonight. We need to talk about your choices.",
                 stayedInDialogue: "How was your evening, honey?",
                 stayedInChoices: {
                     positive: { text: "It was quiet. I just got some homework done.", effects: { familySocial: 5, academic: 5 } },
                     neutral: { text: "It was fine. Nothing special.", effects: { familySocial: 0 } },
-                    negative: { text: "Boring. There's never anything to do.", effects: { familySocial: -10, mentalHealth: -5 } }
+                    negative: { text: "Boring. There's never anything to do.", effects: { familySocial: -6, mentalHealth: -3 } }
                 }
             }
         },
@@ -535,7 +535,7 @@
                 {
                     speaker: 'Charlie', text: 'I have a huge history test tomorrow and I barely started studying.',
                     choices: [
-                        { text: 'Pull an all-nighter with tons of coffee.', effects: { academic: 25, physicalHealth: -30, mentalHealth: -20, familySocial: -5 }, popup: { type: 'negative', header: 'Heads-Up: Burnout', why: 'Sacrificing sleep for studying is often counterproductive and makes you irritable.', bigPicture: 'Lack of sleep severely impairs memory retention and critical thinking. It\'s a major cause of stress.', betterWay: 'Consistent studying over time is more effective than last-minute cramming.'} },
+                        { text: 'Pull an all-nighter with tons of coffee.', effects: { academic: 25, physicalHealth: -18, mentalHealth: -12, familySocial: -3 }, popup: { type: 'negative', header: 'Heads-Up: Burnout', why: 'Sacrificing sleep for studying is often counterproductive and makes you irritable.', bigPicture: 'Lack of sleep severely impairs memory retention and critical thinking. It\'s a major cause of stress.', betterWay: 'Consistent studying over time is more effective than last-minute cramming.'} },
                         { text: 'Study for a few hours, then get a decent sleep.', effects: { academic: 10, physicalHealth: 5, mentalHealth: 5 }, popup: { type: 'positive', header: 'Smart Strategy', why: 'You balanced your need to study with your need for rest, though you didn\'t cram as much.', bigPicture: 'Good sleep is essential for academic performance and mental health.', reward: 'A balanced, safe choice.'} },
                     ]
                 },
@@ -545,19 +545,19 @@
                     choices: [
                         { 
                             text: 'Take the pill.', 
-                            effects: { academic: 30, physicalHealth: -40, mentalHealth: -25 }, 
-                            alexEffect: -1,
+                            effects: { academic: 30, physicalHealth: -24, mentalHealth: -15 }, 
+                            alexEffect: -2,
                             popup: { type: 'negative', header: 'Heads-Up: Prescription Drug Misuse', why: 'Using someone else\'s prescription is a huge gamble with severe health costs.', bigPicture: 'Misusing prescription stimulants is illegal, dangerous, and can lead to dependence. (CA Standard 1.8.A)', betterWay: 'Rely on proven, healthy study habits. Your health is worth more than a grade.' } 
                         },
                         { 
                             text: 'Refuse firmly. "No way, that stuff is dangerous."', 
-                            effects: { mentalHealth: 15, peerSocial: -5 }, 
+                            effects: { mentalHealth: 15, peerSocial: -3 }, 
                             alexEffect: 1,
                             popup: { type: 'positive', header: 'Skill Unlocked: Strong Refusal', why: 'You recognized a dangerous situation and responded with a strong, clear boundary.', bigPicture: 'Refusing drugs, especially from peers, is a critical skill for protecting your health.', reward: 'A big boost to your Mental Health.' },
                             requires: { stat: 'mentalHealth', value: 40 },
                             alternative: {
                                 text: 'Hesitate. "I don\'t know... that seems like a bad idea."',
-                                effects: { mentalHealth: -10 },
+                                effects: { mentalHealth: -6 },
                                 alexEffect: -1,
                                 popup: { type: 'negative', header: 'Heads-Up: Weak Refusal', why: 'Your low mental health made it hard to refuse confidently. The hesitation showed you were struggling.', bigPicture: 'When you\'re feeling down, you are more vulnerable to making risky decisions. Recognizing this is the first step to protecting yourself.', betterWay: 'Even a simple "No" is powerful. You don\'t need to justify it.' }
                             }
@@ -568,26 +568,26 @@
                 {
                     speaker: 'Charlie', text: 'That\'s not fair. Should I tell the teacher?',
                     choices: [
-                        { text: 'Tell the teacher after class.', effects: { academic: 5, peerSocial: -15 }, popup: { type: 'negative', header: 'Heads-Up: Social Risk', why: 'Doing the right thing sometimes has social costs. You\'ll be known as a snitch.', bigPicture: 'Academic integrity is important, but reporting on peers can lead to social backlash.', betterWay: 'There\'s no easy answer here. Sometimes you have to weigh your own values.'} },
-                        { text: 'Mind your own business.', effects: { academic: -5, mentalHealth: -5 }, popup: { type: 'positive', header: 'Staying Focused', why: 'You decided to not get involved, but feeling like you let cheating slide bothered you.', bigPicture: 'Choosing not to engage is a valid strategy when you don\'t have all the information.', reward: 'No major stat penalties.'} },
+                        { text: 'Tell the teacher after class.', effects: { academic: 5, peerSocial: -9 }, popup: { type: 'negative', header: 'Heads-Up: Social Risk', why: 'Doing the right thing sometimes has social costs. You\'ll be known as a snitch.', bigPicture: 'Academic integrity is important, but reporting on peers can lead to social backlash.', betterWay: 'There\'s no easy answer here. Sometimes you have to weigh your own values.'} },
+                        { text: 'Mind your own business.', effects: { academic: -3, mentalHealth: -3 }, popup: { type: 'positive', header: 'Staying Focused', why: 'You decided to not get involved, but feeling like you let cheating slide bothered you.', bigPicture: 'Choosing not to engage is a valid strategy when you don\'t have all the information.', reward: 'No major stat penalties.'} },
                     ]
                 },
                 { speaker: 'Narrator', text: 'After your last midterm, Alex texts you: "Party to celebrate being done! You in?"' },
                 {
                     speaker: 'Charlie', text: 'I\'m so tired, but I don\'t want to miss out.',
                     choices: [
-                        { text: 'Go to the party.', effects: { peerSocial: 15, physicalHealth: -15, mentalHealth: 5 }, popup: { type: 'negative', header: 'Running on Empty', why: 'You\'re pushing your body when it needs to recover, but it was fun.', bigPicture: 'Ignoring your body\'s need for rest can weaken your immune system and increase stress.', betterWay: 'It\'s okay to miss out sometimes to take care of yourself.'} },
-                        { text: 'Politely decline and go home to rest.', effects: { physicalHealth: 15, mentalHealth: 10, peerSocial: -5 }, popup: { type: 'positive', header: 'Self-Care FTW', why: 'You listened to your body and prioritized your well-being.', bigPicture: 'Recognizing your own limits and needs is a key part of managing your mental and physical health.', reward: 'Big boost to health stats.'} },
+                        { text: 'Go to the party.', effects: { peerSocial: 15, physicalHealth: -9, mentalHealth: 5 }, alexEffect: 1, popup: { type: 'negative', header: 'Running on Empty', why: 'You\'re pushing your body when it needs to recover, but it was fun.', bigPicture: 'Ignoring your body\'s need for rest can weaken your immune system and increase stress.', betterWay: 'It\'s okay to miss out sometimes to take care of yourself.'} },
+                        { text: 'Politely decline and go home to rest.', effects: { physicalHealth: 15, mentalHealth: 10, peerSocial: -3 }, alexEffect: -1, popup: { type: 'positive', header: 'Self-Care FTW', why: 'You listened to your body and prioritized your well-being.', bigPicture: 'Recognizing your own limits and needs is a key part of managing your mental and physical health.', reward: 'Big boost to health stats.'} },
                     ]
                 }
             ],
             dailyLife: {
-                study: { effects: { academic: 22, peerSocial: -12, mentalHealth: -12, physicalHealth: -5 } },
-                exercise: { effects: { physicalHealth: 18, mentalHealth: 12, academic: -12 } },
-                friends: { effects: { peerSocial: 18, mentalHealth: 8, academic: -18 } },
+                study: { effects: { academic: 22, peerSocial: -7, mentalHealth: -7, physicalHealth: -3 } },
+                exercise: { effects: { physicalHealth: 18, mentalHealth: 12, academic: -7 } },
+                friends: { effects: { peerSocial: 18, mentalHealth: 8, academic: -11, alexEffect: 1 } },
                 trouble: {
-                    success: { effects: { academic: 10, mentalHealth: -15 }, flag: 'hasAnswerKey', popup: { type: 'positive', header: 'Success!', why: 'You got the answer key, but the anxiety of getting caught is eating you alive.', bigPicture: 'Cheating might get you a good grade now, but it creates intense anxiety and you don\'t actually learn.', reward: '+10 Academic.'} },
-                    failure: { effects: { familySocial: -20, academic: -25, mentalHealth: -15, physicalHealth: -15 }, popup: { type: 'negative', header: 'Busted!', why: 'You tried to get the answer key from the teacher\'s desk. Just as your hand touched the paper, the door opened. The teacher saw everything.', bigPicture: 'The consequences for academic dishonesty are severe and can affect your entire high school career.', betterWay: 'Asking a teacher for help or extra credit is always the better path.'} }
+                    success: { effects: { academic: 10, mentalHealth: -9 }, flag: 'hasAnswerKey', popup: { type: 'positive', header: 'Success!', why: 'You got the answer key, but the anxiety of getting caught is eating you alive.', bigPicture: 'Cheating might get you a good grade now, but it creates intense anxiety and you don\'t actually learn.', reward: '+10 Academic.'} },
+                    failure: { effects: { familySocial: -12, academic: -15, mentalHealth: -9, physicalHealth: -9 }, popup: { type: 'negative', header: 'Busted!', why: 'You tried to get the answer key from the teacher\'s desk. Just as your hand touched the paper, the door opened. The teacher saw everything.', bigPicture: 'The consequences for academic dishonesty are severe and can affect your entire high school career.', betterWay: 'Asking a teacher for help or extra credit is always the better path.'} }
                 }
             },
             backHome: {
@@ -595,15 +595,15 @@
                 dialogue: "Midterm reports came out. Let's talk about these grades.",
                 choices: {
                     positive: { text: "I worked really hard on them.", effects: { familySocial: 10, academic: 5 } },
-                    neutral: { text: "They're fine.", effects: { familySocial: -5 } },
-                    negative: { text: "Why are you always checking up on me?", effects: { familySocial: -15, mentalHealth: -5 } }
+                    neutral: { text: "They're fine.", effects: { familySocial: -3 } },
+                    negative: { text: "Why are you always checking up on me?", effects: { familySocial: -9, mentalHealth: -3 } }
                 },
                 lowAcademicScenario: {
                     dialogue: "Charlie, I saw your midterm report... I'm really worried. What's going on?",
                     choices: [
-                        { text: "I know, I'm sorry. I'll do better, I promise.", effects: { familySocial: -5, mentalHealth: -10 }, popup: { type: 'negative', header: 'A Difficult Promise', why: 'While this is what your mom wanted to hear, the pressure to improve has increased your stress.', bigPicture: 'Feeling like you\'ve disappointed your family can take a toll on your mental health, even when you promise to do better.', betterWay: 'Try being more specific: "I\'m struggling in Math. Can we look into a tutor?" This turns the problem into a plan.'} },
-                        { text: "It's not a big deal. I can bring them up.", effects: { familySocial: -15, mentalHealth: -5 }, popup: { type: 'negative', header: 'Dismissive Response', why: 'Your mom is trying to express concern, but your response shut down the conversation.', bigPicture: 'Appearing like you don\'t care about a problem can damage trust and make your parents feel like they need to be more strict.', betterWay: 'Acknowledge her concern: "I know they\'re not great, but I have a plan to fix it."'} },
-                        { text: "Get off my back! It's my life!", effects: { familySocial: -25, mentalHealth: -10 }, popup: { type: 'negative', header: 'Lashing Out', why: 'You responded to stress with anger, creating a major conflict.', bigPicture: 'This kind of outburst severely damages your family relationship and creates a more stressful home environment, which hurts your mental health.', betterWay: 'If you feel overwhelmed, it\'s better to say "I\'m too stressed to talk about this right now" than to start a fight.'} }
+                        { text: "I know, I'm sorry. I'll do better, I promise.", effects: { familySocial: -3, mentalHealth: -6 }, popup: { type: 'negative', header: 'A Difficult Promise', why: 'While this is what your mom wanted to hear, the pressure to improve has increased your stress.', bigPicture: 'Feeling like you\'ve disappointed your family can take a toll on your mental health, even when you promise to do better.', betterWay: 'Try being more specific: "I\'m struggling in Math. Can we look into a tutor?" This turns the problem into a plan.'} },
+                        { text: "It's not a big deal. I can bring them up.", effects: { familySocial: -9, mentalHealth: -3 }, popup: { type: 'negative', header: 'Dismissive Response', why: 'Your mom is trying to express concern, but your response shut down the conversation.', bigPicture: 'Appearing like you don\'t care about a problem can damage trust and make your parents feel like they need to be more strict.', betterWay: 'Acknowledge her concern: "I know they\'re not great, but I have a plan to fix it."'} },
+                        { text: "Get off my back! It's my life!", effects: { familySocial: -15, mentalHealth: -6 }, popup: { type: 'negative', header: 'Lashing Out', why: 'You responded to stress with anger, creating a major conflict.', bigPicture: 'This kind of outburst severely damages your family relationship and creates a more stressful home environment, which hurts your mental health.', betterWay: 'If you feel overwhelmed, it\'s better to say "I\'m too stressed to talk about this right now" than to start a fight.'} }
                     ]
                 }
             }
@@ -615,24 +615,24 @@
                 {
                     speaker: 'Alex', text: 'So... big question. Got your ticket for the dance yet?',
                     choices: [
-                        { text: '"Yep, got it right here!"', effects: { peerSocial: 5, mentalHealth: 5, academic: -2 }, popup: { type: 'positive', header: 'Getting Involved!', why: 'You\'re participating in a major school event!', bigPicture: 'School events like dances are a great way to make memories and feel like part of the community.', reward: 'A boost to Peer Social and Mental Health.'} },
-                        { text: '"Nah, dances are lame."', effects: { peerSocial: -10, mentalHealth: -5 }, popup: { type: 'negative', header: 'Heads-Up: Cynicism', why: 'Dismissing things as "lame" can be a defense mechanism against anxiety or fear of not fitting in.', bigPicture: 'It\'s okay if dances aren\'t your thing, but showing enthusiasm for your friends\' interests is part of being a good friend.', betterWay: 'Try: "Not sure if I\'m going, but I hope you have fun!"'} },
+                        { text: '"Yep, got it right here!"', effects: { peerSocial: 5, mentalHealth: 5, academic: -1 }, alexEffect: 1, popup: { type: 'positive', header: 'Getting Involved!', why: 'You\'re participating in a major school event!', bigPicture: 'School events like dances are a great way to make memories and feel like part of the community.', reward: 'A boost to Peer Social and Mental Health.'} },
+                        { text: '"Nah, dances are lame."', effects: { peerSocial: -6, mentalHealth: -3 }, alexEffect: -1, popup: { type: 'negative', header: 'Heads-Up: Cynicism', why: 'Dismissing things as "lame" can be a defense mechanism against anxiety or fear of not fitting in.', bigPicture: 'It\'s okay if dances aren\'t your thing, but showing enthusiasm for your friends\' interests is part of being a good friend.', betterWay: 'Try: "Not sure if I\'m going, but I hope you have fun!"'} },
                     ]
                 },
                 { speaker: 'Narrator', text: 'In English class, the teacher announces a big essay due... the Monday after homecoming.', bg: backgrounds.classroom, sprite: sprites.charlie_stressed },
                 {
                     speaker: 'Charlie', text: 'Are you kidding me? That\'s terrible timing.',
                     choices: [
-                        { text: 'Start planning the essay now.', effects: { academic: 15, mentalHealth: -8, peerSocial: -8 }, popup: { type: 'positive', header: 'Responsible Planning', why: 'You looked ahead and made a plan to avoid last-minute stress, but missed out on some social time.', bigPicture: 'Time management is a critical skill for balancing academic and social life.', reward: 'A big boost to Academics.'} },
-                        { text: 'Complain about it with friends.', effects: { peerSocial: 8, academic: -10, mentalHealth: -3 }, popup: { type: 'negative', header: 'Heads-Up: Complaining vs. Action', why: 'Venting with friends can feel good, but it doesn\'t solve the problem and adds to the stress.', bigPicture: 'Focusing on solutions rather than problems is a more effective way to manage stress and responsibilities.', betterWay: 'Vent for a minute, then make a plan together to get the work done.'} },
+                        { text: 'Start planning the essay now.', effects: { academic: 15, mentalHealth: -5, peerSocial: -5 }, popup: { type: 'positive', header: 'Responsible Planning', why: 'You looked ahead and made a plan to avoid last-minute stress, but missed out on some social time.', bigPicture: 'Time management is a critical skill for balancing academic and social life.', reward: 'A big boost to Academics.'} },
+                        { text: 'Complain about it with friends.', effects: { peerSocial: 8, academic: -6, mentalHealth: -2 }, popup: { type: 'negative', header: 'Heads-Up: Complaining vs. Action', why: 'Venting with friends can feel good, but it doesn\'t solve the problem and adds to the stress.', bigPicture: 'Focusing on solutions rather than problems is a more effective way to manage stress and responsibilities.', betterWay: 'Vent for a minute, then make a plan together to get the work done.'} },
                     ]
                 },
                 { speaker: 'Alex', text: 'Okay, we need to coordinate. What are you wearing to the dance?' },
                 {
                     speaker: 'Charlie', text: 'I... hadn\'t really thought about it.',
                     choices: [
-                        { text: 'Get excited. "I have no idea! Let\'s talk options!"', effects: { peerSocial: 10 }, popup: { type: 'positive', header: 'Shared Excitement', why: 'You engaged with your friend\'s enthusiasm, strengthening your bond.', bigPicture: 'Sharing in friends\' excitement, even for things you don\'t care as much about, is a key part of social connection.', reward: '+10 Peer Social.'} },
-                        { text: 'Shrug. "Does it matter? I\'ll just find something."', effects: { peerSocial: -10 }, popup: { type: 'negative', header: 'Heads-Up: Dismissing a Friend', why: 'Your lack of interest might have come across as dismissive of something your friend was excited about.', bigPicture: 'Being a good friend sometimes means showing interest in their interests.', betterWay: 'Even if you don\'t care, you can say, "I haven\'t thought about it, but what are you thinking of wearing?"'} },
+                        { text: 'Get excited. "I have no idea! Let\'s talk options!"', effects: { peerSocial: 10 }, alexEffect: 1, popup: { type: 'positive', header: 'Shared Excitement', why: 'You engaged with your friend\'s enthusiasm, strengthening your bond.', bigPicture: 'Sharing in friends\' excitement, even for things you don\'t care as much about, is a key part of social connection.', reward: '+10 Peer Social.'} },
+                        { text: 'Shrug. "Does it matter? I\'ll just find something."', effects: { peerSocial: -6 }, alexEffect: -1, popup: { type: 'negative', header: 'Heads-Up: Dismissing a Friend', why: 'Your lack of interest might have come across as dismissive of something your friend was excited about.', bigPicture: 'Being a good friend sometimes means showing interest in their interests.', betterWay: 'Even if you don\'t care, you can say, "I haven\'t thought about it, but what are you thinking of wearing?"'} },
                     ]
                 },
                 { speaker: 'Narrator', text: 'You see someone in the hall who looks like they don\'t have anyone to go to the dance with. They look pretty down.', sprite: sprites.charlie_sad },
@@ -640,17 +640,17 @@
                     speaker: 'Charlie', text: 'They seem lonely.',
                     choices: [
                         { text: 'Invite them to go with your group.', effects: { peerSocial: 15, mentalHealth: 10 }, popup: { type: 'positive', header: 'Inclusivity Wins!', why: 'You went out of your way to include someone who might be feeling left out.', bigPicture: 'Small acts of social kindness can have a huge positive impact on a person\'s mental health and sense of belonging.', reward: 'A big boost to Peer Social and Mental Health.'} },
-                        { text: 'Look away and keep walking.', effects: { mentalHealth: -5 }, popup: { type: 'negative', header: 'Heads-Up: Missed Opportunity for Kindness', why: 'It felt too awkward to intervene, so you did nothing.', bigPicture: 'High school can be a lonely place for some. Being the person who reaches out is a powerful act of good character.', betterWay: 'A simple, "Hey, are you going to the dance on Saturday?" can open the door.'} },
+                        { text: 'Look away and keep walking.', effects: { mentalHealth: -3 }, popup: { type: 'negative', header: 'Heads-Up: Missed Opportunity for Kindness', why: 'It felt too awkward to intervene, so you did nothing.', bigPicture: 'High school can be a lonely place for some. Being the person who reaches out is a powerful act of good character.', betterWay: 'A simple, "Hey, are you going to the dance on Saturday?" can open the door.'} },
                     ]
                 }
             ],
             dailyLife: {
-                study: { effects: { academic: 22, peerSocial: -12, mentalHealth: -12, physicalHealth: -5 } },
-                exercise: { effects: { physicalHealth: 18, mentalHealth: 12, academic: -12 } },
-                friends: { effects: { peerSocial: 18, mentalHealth: 8, academic: -18 } },
+                study: { effects: { academic: 22, peerSocial: -7, mentalHealth: -7, physicalHealth: -3 } },
+                exercise: { effects: { physicalHealth: 18, mentalHealth: 12, academic: -7 } },
+                friends: { effects: { peerSocial: 18, mentalHealth: 8, academic: -11, alexEffect: 1 } },
                 trouble: {
-                    success: { effects: { peerSocial: 15, mentalHealth: -10, familySocial: -5 }, flag: 'liedAboutSleepover', popup: { type: 'positive', header: 'Success!', why: 'You lied to your parents so you could go to an afterparty. It was fun, but the stress of keeping the secret is taking a toll.', bigPicture: 'Even when you get away with it, lying erodes the foundation of trust with your family.', reward: '+15 Peer Social.'} },
-                    failure: { effects: { familySocial: -25, academic: -15, mentalHealth: -15, physicalHealth: -15, peerSocial: -30 }, popup: { type: 'negative', header: 'Busted!', why: 'You decided to lie to your parents. The plan seemed perfect until your mom called Alex\'s mom to confirm. The lie completely unraveled.', bigPicture: 'This lie means you\'re grounded. No homecoming for you, and Alex is really disappointed.', betterWay: 'Try to negotiate for more freedom honestly instead of taking it dishonestly.'} }
+                    success: { effects: { peerSocial: 15, mentalHealth: -6, familySocial: -3 }, flag: 'liedAboutSleepover', popup: { type: 'positive', header: 'Success!', why: 'You lied to your parents so you could go to an afterparty. It was fun, but the stress of keeping the secret is taking a toll.', bigPicture: 'Even when you get away with it, lying erodes the foundation of trust with your family.', reward: '+15 Peer Social.'} },
+                    failure: { effects: { familySocial: -15, academic: -9, mentalHealth: -9, physicalHealth: -9, peerSocial: -18 }, popup: { type: 'negative', header: 'Busted!', why: 'You decided to lie to your parents. The plan seemed perfect until your mom called Alex\'s mom to confirm. The lie completely unraveled.', bigPicture: 'This lie means you\'re grounded. No homecoming for you, and Alex is really disappointed.', betterWay: 'Try to negotiate for more freedom honestly instead of taking it dishonestly.'} }
                 }
             },
             eveningEvent: [
@@ -659,8 +659,8 @@
                 {
                     speaker: 'Charlie', text: 'Everyone else is drinking. They say it\'ll make dancing less awkward.',
                     choices: [
-                        { text: 'Have one to loosen up.', effects: { peerSocial: 10, physicalHealth: -20, mentalHealth: -10 }, alexEffect: -1, flag: 'drankAlcohol', popup: { type: 'negative', header: 'Heads-Up: Liquid Courage', why: 'Using alcohol to manage social anxiety is a slippery slope.', bigPicture: 'Relying on substances to feel comfortable in social situations can prevent you from developing natural confidence. (CA Standard 6.1.M)', betterWay: 'True confidence comes from practice and self-acceptance, not from a can.'} },
-                        { text: 'Stick to soda.', effects: { mentalHealth: 12, physicalHealth: 5, peerSocial: -10 }, alexEffect: 1, popup: { type: 'positive', header: 'Clear-Headed Choice', why: 'You decided you don\'t need a substance to have a good time.', bigPicture: 'Making a conscious choice to stay sober allows you to be fully present and in control of your actions.', reward: 'Boosts to health stats.'} },
+                        { text: 'Have one to loosen up.', effects: { peerSocial: 10, physicalHealth: -12, mentalHealth: -6 }, alexEffect: -1, flag: 'drankAlcohol', popup: { type: 'negative', header: 'Heads-Up: Liquid Courage', why: 'Using alcohol to manage social anxiety is a slippery slope.', bigPicture: 'Relying on substances to feel comfortable in social situations can prevent you from developing natural confidence. (CA Standard 6.1.M)', betterWay: 'True confidence comes from practice and self-acceptance, not from a can.'} },
+                        { text: 'Stick to soda.', effects: { mentalHealth: 12, physicalHealth: 5, peerSocial: -6 }, alexEffect: 1, popup: { type: 'positive', header: 'Clear-Headed Choice', why: 'You decided you don\'t need a substance to have a good time.', bigPicture: 'Making a conscious choice to stay sober allows you to be fully present and in control of your actions.', reward: 'Boosts to health stats.'} },
                     ]
                 },
                 { speaker: 'Narrator', text: 'You arrive at the dance. The gym is decorated and buzzing with energy.', bg: backgrounds.gym_decorated },
@@ -671,15 +671,17 @@
                         { 
                             text: 'Ask Alex to dance.', 
                             effects: { peerSocial: 10, mentalHealth: 5 }, 
+                            alexEffect: 2,
                             popup: { type: 'positive', header: 'Brave Move!', why: 'You faced your fear of awkwardness and went for it.', bigPicture: 'Being vulnerable is scary, but it\'s where the most meaningful connections are made.', reward: 'Boosts to Peer Social and Mental Health.'},
                             requires: { stat: 'mentalHealth', value: 35 },
                             alternative: { 
                                 text: 'Stand awkwardly at the edge of the dance floor.', 
-                                effects: { peerSocial: -5, mentalHealth: -8 }, 
+                                effects: { peerSocial: -3, mentalHealth: -5 }, 
+                                alexEffect: -1,
                                 popup: { type: 'negative', header: 'Heads-Up: Frozen by Anxiety', why: 'You wanted to participate, but your anxiety was too high to take the risk.', bigPicture: 'Anxiety can feel paralyzing and prevent us from doing things we want to do. Healthy coping strategies can help manage these feelings.', betterWay: 'Even just asking a friend to stand with you by the dance floor is a smaller, more manageable step.' }
                             }
                         },
-                        { text: 'Go hide in the bathroom until it\'s over.', effects: { mentalHealth: -15, peerSocial: -5 }, popup: { type: 'negative', header: 'Flight Response', why: 'Your anxiety took over and you ran from the situation.', bigPicture: 'Avoiding things that make us anxious only makes the anxiety stronger next time.', betterWay: 'Take a deep breath. Remember that most people feel awkward, and it\'s okay.'} },
+                        { text: 'Go hide in the bathroom until it\'s over.', effects: { mentalHealth: -9, peerSocial: -3 }, alexEffect: -1, popup: { type: 'negative', header: 'Flight Response', why: 'Your anxiety took over and you ran from the situation.', bigPicture: 'Avoiding things that make us anxious only makes the anxiety stronger next time.', betterWay: 'Take a deep breath. Remember that most people feel awkward, and it\'s okay.'} },
                     ]
                 },
                 { speaker: 'Narrator', text: 'You see a friend sitting alone in the bleachers, looking upset.' },
@@ -687,7 +689,7 @@
                     speaker: 'Charlie', text: 'They look like they could use a friend.',
                     choices: [
                         { text: 'Go talk to them and see what\'s wrong.', effects: { peerSocial: 15, mentalHealth: 10 }, popup: { type: 'positive', header: 'Relationship Built: Empathy', why: 'You noticed a friend in distress and offered support.', bigPicture: 'Recognizing emotional distress in others and offering help are key components of mental and emotional health. (CA Standard 7.2.M)', reward: 'A boost to Peer Social and Mental Health.' } },
-                        { text: 'Leave them alone. It\'s not your problem.', effects: { peerSocial: -5, mentalHealth: -5 }, popup: { type: 'negative', header: 'Missed Connection', why: 'You chose not to get involved with someone else\'s problem.', bigPicture: 'A strong community is built on people being there for each other. You might need someone to do the same for you one day.', betterWay: 'Even a simple "Hey, are you okay?" can make a huge difference.'} },
+                        { text: 'Leave them alone. It\'s not your problem.', effects: { peerSocial: -3, mentalHealth: -3 }, popup: { type: 'negative', header: 'Missed Connection', why: 'You chose not to get involved with someone else\'s problem.', bigPicture: 'A strong community is built on people being there for each other. You might need someone to do the same for you one day.', betterWay: 'Even a simple "Hey, are you okay?" can make a huge difference.'} },
                     ]
                 },
                 { speaker: 'Narrator', text: 'The dance is ending. Someone shouts "Afterparty at my place! My parents aren\'t home!"' },
@@ -695,7 +697,7 @@
                     speaker: 'Charlie', text: 'My curfew is in thirty minutes...',
                     choices: [
                         { text: 'Go to the afterparty.', triggers: 'afterpartyEvent' },
-                        { text: 'Thank everyone for a fun night and go home.', effects: { familySocial: 15, mentalHealth: 10, peerSocial: -5 }, popup: { type: 'positive', header: 'Smart Finish', why: 'You made a mature decision to end the night safely and responsibly.', bigPicture: 'Knowing your limits and making safe choices is a hallmark of growing independence.', reward: 'Boosts to Family Social and Mental Health.'} },
+                        { text: 'Thank everyone for a fun night and go home.', effects: { familySocial: 15, mentalHealth: 10, peerSocial: -3 }, alexEffect: -1, popup: { type: 'positive', header: 'Smart Finish', why: 'You made a mature decision to end the night safely and responsibly.', bigPicture: 'Knowing your limits and making safe choices is a hallmark of growing independence.', reward: 'Boosts to Family Social and Mental Health.'} },
                     ]
                 }
             ],
@@ -704,8 +706,8 @@
                 {
                     speaker: 'Alex', text: 'They\'re playing a drinking game. We should join!',
                     choices: [
-                        { text: 'Join the game.', effects: { peerSocial: 15, physicalHealth: -25, mentalHealth: -15 }, alexEffect: -2, flag: 'drankAlcohol', popup: { type: 'negative', header: 'Heads-Up: Binge Drinking', why: 'Drinking games are designed to get people drunk quickly, which is dangerous.', bigPicture: 'Binge drinking can lead to alcohol poisoning, poor decision-making, and long-term health problems.', betterWay: 'Suggest a different activity, like dancing or just talking with friends.'} },
-                        { text: 'Decline. "No thanks, I\'m just gonna hang out."', effects: { mentalHealth: 10, peerSocial: -10 }, alexEffect: 1, popup: { type: 'positive', header: 'Smart Choice', why: 'You avoided a high-risk situation and set a positive example.', bigPicture: 'You don\'t have to drink to have fun or fit in at a party.', reward: '+10 Mental Health.'} },
+                        { text: 'Join the game.', effects: { peerSocial: 15, physicalHealth: -15, mentalHealth: -9 }, alexEffect: -2, flag: 'drankAlcohol', popup: { type: 'negative', header: 'Heads-Up: Binge Drinking', why: 'Drinking games are designed to get people drunk quickly, which is dangerous.', bigPicture: 'Binge drinking can lead to alcohol poisoning, poor decision-making, and long-term health problems.', betterWay: 'Suggest a different activity, like dancing or just talking with friends.'} },
+                        { text: 'Decline. "No thanks, I\'m just gonna hang out."', effects: { mentalHealth: 10, peerSocial: -6 }, alexEffect: 1, popup: { type: 'positive', header: 'Smart Choice', why: 'You avoided a high-risk situation and set a positive example.', bigPicture: 'You don\'t have to drink to have fun or fit in at a party.', reward: '+10 Mental Health.'} },
                     ]
                 },
                 { speaker: 'Narrator', text: 'An hour later, you see the person from the bleachers looking very sick in the corner.' },
@@ -713,7 +715,7 @@
                     speaker: 'Charlie', text: 'They drank way too much.',
                     choices: [
                         { text: 'Get them some water and find their friends.', effects: { peerSocial: 15, mentalHealth: 15 }, alexEffect: 2, popup: { type: 'positive', header: 'Helping Hand', why: 'You stepped up to help someone in a vulnerable situation.', bigPicture: 'Looking out for the well-being of your peers is a sign of great character and leadership.', reward: 'Big boosts to Peer Social and Mental Health.'} },
-                        { text: 'Pretend you don\'t see them.', effects: { mentalHealth: -15, peerSocial: -10 }, popup: { type: 'negative', header: 'Heads-Up: Ignoring a Problem', why: 'You ignored someone who was clearly in need of help.', bigPicture: 'If someone is showing signs of alcohol poisoning, getting them help is critical. Ignoring it could have serious consequences for them.', betterWay: 'Always tell a trusted adult or find their friends if someone seems dangerously intoxicated.'} },
+                        { text: 'Pretend you don\'t see them.', effects: { mentalHealth: -9, peerSocial: -6 }, alexEffect: -2, popup: { type: 'negative', header: 'Heads-Up: Ignoring a Problem', why: 'You ignored someone who was clearly in need of help.', bigPicture: 'If someone is showing signs of alcohol poisoning, getting them help is critical. Ignoring it could have serious consequences for them.', betterWay: 'Always tell a trusted adult or find their friends if someone seems dangerously intoxicated.'} },
                     ]
                 },
                 { speaker: 'Narrator', text: 'It\'s now 2 AM. You feel exhausted.' },
@@ -731,8 +733,8 @@
                 groundedDialogue: "Since you got in trouble, you're grounded tonight. No homecoming dance for you.",
                 choices: {
                     positive: { text: "Yeah, it was really fun!", effects: { familySocial: 10 } },
-                    neutral: { text: "It was okay.", effects: { familySocial: -5 } },
-                    negative: { text: "It was lame.", effects: { familySocial: -10 } }
+                    neutral: { text: "It was okay.", effects: { familySocial: -3 } },
+                    negative: { text: "It was lame.", effects: { familySocial: -6 } }
                 }
             }
         },
@@ -743,16 +745,16 @@
                 {
                     speaker: 'Charlie', text: 'This final project is worth 30% of my grade. I have to ace it.',
                     choices: [
-                        { text: 'Start working on it immediately.', effects: { academic: 15, peerSocial: -8, mentalHealth: -5 }, popup: { type: 'positive', header: 'Proactive & Prepared', why: 'You tackled the biggest task first, giving yourself plenty of time.', bigPicture: 'Effective time management is one of the most important skills for reducing academic stress.', reward: '+15 Academic.'} },
-                        { text: 'Procrastinate and do it all the night before.', effects: { academic: -15, mentalHealth: -20 }, popup: { type: 'negative', header: 'Heads-Up: Procrastination', why: 'Delaying the inevitable only increases your stress and reduces the quality of your work.', bigPicture: 'Procrastination is a major source of anxiety and poor performance for students.', betterWay: 'Break big tasks into smaller, manageable chunks to make them feel less intimidating.'} },
+                        { text: 'Start working on it immediately.', effects: { academic: 15, peerSocial: -5, mentalHealth: -3 }, popup: { type: 'positive', header: 'Proactive & Prepared', why: 'You tackled the biggest task first, giving yourself plenty of time.', bigPicture: 'Effective time management is one of the most important skills for reducing academic stress.', reward: '+15 Academic.'} },
+                        { text: 'Procrastinate and do it all the night before.', effects: { academic: -9, mentalHealth: -12 }, popup: { type: 'negative', header: 'Heads-Up: Procrastination', why: 'Delaying the inevitable only increases your stress and reduces the quality of your work.', bigPicture: 'Procrastination is a major source of anxiety and poor performance for students.', betterWay: 'Break big tasks into smaller, manageable chunks to make them feel less intimidating.'} },
                     ]
                 },
                 { speaker: 'Alex', text: 'We\'re all so burnt out. Let\'s just skip last period and go to the mall. It\'ll be good for our mental health!' },
                 {
                     speaker: 'Charlie', text: 'Skipping class during finals week is a terrible idea... but they\'re right, I am burnt out.',
                     choices: [
-                        { text: 'Go with them.', effects: { peerSocial: 10, academic: -15, mentalHealth: 5, familySocial: -5 }, popup: { type: 'negative', header: 'Heads-Up: Poor Timing', why: 'While taking a break is healthy, skipping class right before a final is a bad trade-off.', bigPicture: 'There are healthy and unhealthy ways to cope with stress. Missing obligations is an unhealthy one.', betterWay: 'Plan a fun destressing activity for *after* your last final.'} },
-                        { text: 'Stay in class. "I can\'t risk it, sorry!"', effects: { academic: 10, peerSocial: -5 }, popup: { type: 'positive', header: 'Discipline', why: 'You made a tough but responsible choice, prioritizing your grades.', bigPicture: 'Delayed gratification—working hard now for a bigger payoff later—is a key indicator of future success.', reward: '+10 Academic.'} },
+                        { text: 'Go with them.', effects: { peerSocial: 10, academic: -9, mentalHealth: 5, familySocial: -3 }, alexEffect: 1, popup: { type: 'negative', header: 'Heads-Up: Poor Timing', why: 'While taking a break is healthy, skipping class right before a final is a bad trade-off.', bigPicture: 'There are healthy and unhealthy ways to cope with stress. Missing obligations is an unhealthy one.', betterWay: 'Plan a fun destressing activity for *after* your last final.'} },
+                        { text: 'Stay in class. "I can\'t risk it, sorry!"', effects: { academic: 10, peerSocial: -3 }, alexEffect: -1, popup: { type: 'positive', header: 'Discipline', why: 'You made a tough but responsible choice, prioritizing your grades.', bigPicture: 'Delayed gratification—working hard now for a bigger payoff later—is a key indicator of future success.', reward: '+10 Academic.'} },
                     ]
                 },
                 { speaker: 'Narrator', text: 'You\'re really struggling with a concept for your science final.', sprite: sprites.charlie_stressed },
@@ -760,7 +762,7 @@
                     speaker: 'Charlie', text: 'What do I do?',
                     choices: [
                         { text: 'Email the teacher for help.', effects: { academic: 10, mentalHealth: 2 }, popup: { type: 'positive', header: 'Skill Unlocked: Accessing Help', why: 'You recognized you needed help and sought it from a reliable source.', bigPicture: 'Knowing how to access valid health information and academic support is a critical life skill. (CA Standard 3.1.M)', reward: 'A boost to your Academic stat.' } },
-                        { text: 'Just try to Google it and hope for the best.', effects: { academic: -5, mentalHealth: -5 }, popup: { type: 'negative', header: 'Heads-Up: Unreliable Info', why: 'The internet is full of information, but not all of it is accurate or helpful.', bigPicture: 'Relying on primary sources, like your teacher or textbook, is the best way to ensure you\'re learning the right material.', betterWay: 'Don\'t be afraid to ask for help. Teachers appreciate it when students advocate for their own learning.'} },
+                        { text: 'Just try to Google it and hope for the best.', effects: { academic: -3, mentalHealth: -3 }, popup: { type: 'negative', header: 'Heads-Up: Unreliable Info', why: 'The internet is full of information, but not all of it is accurate or helpful.', bigPicture: 'Relying on primary sources, like your teacher or textbook, is the best way to ensure you\'re learning the right material.', betterWay: 'Don\'t be afraid to ask for help. Teachers appreciate it when students advocate for their own learning.'} },
                     ]
                 },
                 { speaker: 'Alex', text: 'Hey, I still have some of those "study pills" if you need one for the big test tomorrow. No charge.' },
@@ -769,8 +771,8 @@
                     choices: [
                         { 
                             text: 'Give in. "Okay, just one."', 
-                            effects: { academic: 25, physicalHealth: -40, mentalHealth: -25 }, 
-                            alexEffect: -1,
+                            effects: { academic: 25, physicalHealth: -24, mentalHealth: -15 }, 
+                            alexEffect: -2,
                             popup: { type: 'negative', header: 'Heads-Up: A Dangerous Crutch', why: 'You turned to a dangerous substance in a moment of weakness and high pressure.', bigPicture: 'Repeatedly using substances to cope with stress is a pathway to dependence and addiction.', betterWay: 'Trust in your own abilities and the hard work you\'ve put in.'} 
                         },
                         { 
@@ -781,7 +783,7 @@
                             requires: { stat: 'mentalHealth', value: 50 },
                             alternative: { 
                                 text: 'Just take the pill without thinking.', 
-                                effects: { academic: 20, physicalHealth: -40, mentalHealth: -25 }, 
+                                effects: { academic: 20, physicalHealth: -24, mentalHealth: -15 }, 
                                 alexEffect: -2,
                                 popup: { type: 'negative', header: 'Heads-Up: Downward Spiral', why: 'Your mental health is so low you didn\'t even have the energy to fight the bad choice. It felt inevitable.', bigPicture: 'When mental health is very low, our decision-making is severely impaired. This is a critical time to seek help from a trusted adult.', betterWay: 'Talk to a parent, teacher, or counselor. You don\'t have to handle this alone.' }
                             }
@@ -790,12 +792,12 @@
                 }
             ],
             dailyLife: {
-                study: { effects: { academic: 22, peerSocial: -12, mentalHealth: -12, physicalHealth: -5 } },
-                exercise: { effects: { physicalHealth: 18, mentalHealth: 12, academic: -12 } },
-                friends: { effects: { peerSocial: 18, mentalHealth: 8, academic: -18 } },
+                study: { effects: { academic: 22, peerSocial: -7, mentalHealth: -7, physicalHealth: -3 } },
+                exercise: { effects: { physicalHealth: 18, mentalHealth: 12, academic: -7 } },
+                friends: { effects: { peerSocial: 18, mentalHealth: 8, academic: -11, alexEffect: 1 } },
                 trouble: {
-                    success: { effects: { academic: 15, mentalHealth: -20, peerSocial: -10 }, flag: 'cheatedOnEssay', popup: { type: 'positive', header: 'Success!', why: 'You paid another student to write your final essay. The guilt and fear of being caught is immense.', bigPicture: 'Plagiarism is a serious academic offense. The anxiety of being caught will linger, and if discovered, the consequences could be severe.', reward: '+15 Academic.'} },
-                    failure: { effects: { familySocial: -20, academic: -30, mentalHealth: -20, physicalHealth: -15 }, popup: { type: 'negative', header: 'Busted!', why: 'You paid another student to write your final essay. Their plagiarism software flagged it immediately.', bigPicture: 'You failed the class on the spot. This will have major academic consequences.', betterWay: 'It is always better to submit your own imperfect work than someone else\'s perfect work.'} }
+                    success: { effects: { academic: 15, mentalHealth: -12, peerSocial: -6 }, flag: 'cheatedOnEssay', popup: { type: 'positive', header: 'Success!', why: 'You paid another student to write your final essay. The guilt and fear of being caught is immense.', bigPicture: 'Plagiarism is a serious academic offense. The anxiety of being caught will linger, and if discovered, the consequences could be severe.', reward: '+15 Academic.'} },
+                    failure: { effects: { familySocial: -12, academic: -18, mentalHealth: -12, physicalHealth: -9 }, popup: { type: 'negative', header: 'Busted!', why: 'You paid another student to write your final essay. Their plagiarism software flagged it immediately.', bigPicture: 'You failed the class on the spot. This will have major academic consequences.', betterWay: 'It is always better to submit your own imperfect work than someone else\'s perfect work.'} }
                 }
             },
             backHome: {
@@ -803,8 +805,8 @@
                 dialogue: "You finished your first semester of high school. I'm so proud of you regardless of your grades. How are you feeling?",
                 choices: {
                     positive: { text: "Tired, but good. I think I learned a lot.", effects: { familySocial: 15, mentalHealth: 10 } },
-                    neutral: { text: "I'm just glad it's over.", effects: { familySocial: -2 } },
-                    negative: { text: "Exhausted. Don't talk to me about school.", effects: { familySocial: -10, mentalHealth: -5 } }
+                    neutral: { text: "I'm just glad it's over.", effects: { familySocial: -1 } },
+                    negative: { text: "Exhausted. Don't talk to me about school.", effects: { familySocial: -6, mentalHealth: -3 } }
                 }
             }
         }
@@ -874,7 +876,7 @@
 
     function checkFriendshipStatus() {
         if (stats.alexHealth < 0 && currentRound > 0) {
-            const penalty = { peerSocial: -5 };
+            const penalty = { peerSocial: -3 };
             const popupData = {
                 type: 'negative',
                 header: 'Friendship Strain',
@@ -896,7 +898,7 @@
                 bg: backgrounds.hallway,
                 sprite: sprites.charlie_stressed,
                 choices: [
-                    { text: 'This is a nightmare.', effects: { academic: -20, familySocial: -20, mentalHealth: -15 }, popup: { type: 'negative', header: 'Consequences', why: 'A past bad decision came back to haunt you.', bigPicture: 'Actions, especially risky ones, can have delayed consequences that are often more severe than the initial thrill.', betterWay: 'The only way to avoid delayed consequences is to make responsible choices in the first place.' } }
+                    { text: 'This is a nightmare.', effects: { academic: -12, familySocial: -12, mentalHealth: -9 }, popup: { type: 'negative', header: 'Consequences', why: 'A past bad decision came back to haunt you.', bigPicture: 'Actions, especially risky ones, can have delayed consequences that are often more severe than the initial thrill.', betterWay: 'The only way to avoid delayed consequences is to make responsible choices in the first place.' } }
                 ]
             };
             roundData.mainScenario.unshift(consequenceScene);
@@ -909,7 +911,7 @@
                 bg: backgrounds.classroom,
                 sprite: sprites.charlie_stressed,
                 choices: [
-                    { text: 'I\'m in so much trouble.', effects: { academic: -25, familySocial: -15, peerSocial: -10 }, popup: { type: 'negative', header: 'Caught Cheating', why: 'You were caught, and now face serious academic penalties.', bigPicture: 'Cheating destroys trust with teachers and can result in failing a class or even suspension.', betterWay: 'It is always better to get a poor grade with your own work than a good grade with someone else\'s.' } }
+                    { text: 'I\'m in so much trouble.', effects: { academic: -15, familySocial: -9, peerSocial: -6 }, popup: { type: 'negative', header: 'Caught Cheating', why: 'You were caught, and now face serious academic penalties.', bigPicture: 'Cheating destroys trust with teachers and can result in failing a class or even suspension.', betterWay: 'It is always better to get a poor grade with your own work than a good grade with someone else\'s.' } }
                 ]
             };
             roundData.mainScenario.unshift(consequenceScene);
@@ -922,7 +924,7 @@
                 bg: backgrounds.livingroom,
                 sprite: sprites.mom_concerned,
                 choices: [
-                    { text: 'The lie fell apart.', effects: { familySocial: -30, mentalHealth: -10 }, popup: { type: 'negative', header: 'Trust Shattered', why: 'The lie was discovered, causing a major breach of trust.', bigPicture: 'Lies, especially to family, almost always come to light and cause more damage than the truth would have.', betterWay: 'Honesty, even when it leads to an argument, is better than deception for long-term relationships.' } }
+                    { text: 'The lie fell apart.', effects: { familySocial: -18, mentalHealth: -6 }, popup: { type: 'negative', header: 'Trust Shattered', why: 'The lie was discovered, causing a major breach of trust.', bigPicture: 'Lies, especially to family, almost always come to light and cause more damage than the truth would have.', betterWay: 'Honesty, even when it leads to an argument, is better than deception for long-term relationships.' } }
                 ]
             };
             roundData.mainScenario.unshift(consequenceScene);
@@ -1071,7 +1073,7 @@
             let choiceText = choice.text;
             
             if (choiceText.includes('crash')) {
-                pendingStatChanges = { familySocial: -35, physicalHealth: -25, peerSocial: 5 };
+                pendingStatChanges = { familySocial: -21, physicalHealth: -15, peerSocial: 5 };
                 confrontationScenes = [
                     { speaker: 'Mom', text: 'Charlie! Where have you been?! I\'ve been worried sick all night!', bg: backgrounds.livingroom, sprite: sprites.mom_concerned },
                     { speaker: 'Charlie', text: 'I... I just fell asleep at a friend\'s house.', sprite: sprites.charlie_sad },
@@ -1080,7 +1082,7 @@
                 ];
             } else if (choiceText.includes('Call for a ride')) {
                 if (stats.flags.drankAlcohol) {
-                    pendingStatChanges = { familySocial: -30, physicalHealth: -10, mentalHealth: -5 };
+                    pendingStatChanges = { familySocial: -18, physicalHealth: -6, mentalHealth: -3 };
                     confrontationScenes = [
                         { speaker: 'Mom', text: 'Thank you for calling me to pick you up... but have you been drinking? I can smell it on you.', bg: backgrounds.livingroom, sprite: sprites.mom_concerned },
                         { speaker: 'Charlie', text: 'I just had a little...', sprite: sprites.charlie_sad },
@@ -1088,7 +1090,7 @@
                         { speaker: 'Narrator', text: 'This conversation is going to be tough.', sprite: sprites.charlie_sad, choices: [{ text: 'This is bad.', effects: {} }] }
                     ];
                 } else {
-                    pendingStatChanges = { familySocial: -20, physicalHealth: -10, mentalHealth: 5 };
+                    pendingStatChanges = { familySocial: -12, physicalHealth: -6, mentalHealth: 5 };
                     const popup = { type: 'negative', header: 'Late, But Safe', why: 'You broke curfew in a big way, but you made the safe choice not to drive tired.', bigPicture: 'The consequence for breaking trust is severe, but getting home safely is the most important thing.', betterWay: 'The best way to avoid this is to stick to your original plan and curfew.'};
                     showPopup(popup, pendingStatChanges, showBackHome);
                     return;
@@ -1287,7 +1289,7 @@
         let recapText = '';
         let burnoutText = '';
         
-        const decayAmount = -7; // Increased decay
+        const decayAmount = -4; 
         for (const stat in statInfo) {
             penaltyEffects[stat] = (penaltyEffects[stat] || 0) + decayAmount;
         }
@@ -1295,13 +1297,13 @@
         let isBurnout = false;
         let burnoutSource = [];
         for (const stat in statInfo) {
-            if (stats[stat] + penaltyEffects[stat] < 30) {
+            if (stats[stat] + (penaltyEffects[stat] || 0) < 30) {
                 isBurnout = true;
                 burnoutSource.push(statInfo[stat].name);
             }
         }
         if (isBurnout) {
-            const burnoutPenalty = -15;
+            const burnoutPenalty = -9;
             burnoutText = `Your ${burnoutSource.join(', ')} is critically low, causing a burnout! This massive stress impacts everything. All other stats get an additional ${burnoutPenalty} penalty.`;
             for (const stat in statInfo) {
                 if (!burnoutSource.includes(statInfo[stat].name)) {
@@ -1312,16 +1314,16 @@
 
         let failingStats = [];
         for (const stat in statInfo) {
-            if (stats[stat] + penaltyEffects[stat] < 70) {
+            if (stats[stat] + (penaltyEffects[stat] || 0) < 70) { // Pass mark back to 70
                 failingStats.push(statInfo[stat].name);
             }
         }
-        const stressPenaltyAmount = -8; // Harsher penalty
-        const stressPenalty = failingStats.length * stressPenaltyAmount;
-        if (stressPenalty < 0) {
-            recapText = `Struggling in ${failingStats.join(', ')} is causing general stress, resulting in a ${stressPenaltyAmount} point penalty for each, totaling ${stressPenalty} points to all stats.`;
+        const stressPenaltyAmount = -5;
+        if (failingStats.length > 0) {
+            const totalPenalty = failingStats.length * stressPenaltyAmount;
+            recapText = `Struggling in ${failingStats.join(', ')} is causing general stress, resulting in a ${totalPenalty} point penalty to all stats.`;
             for (const stat in statInfo) {
-                penaltyEffects[stat] = (penaltyEffects[stat] || 0) + stressPenalty;
+                penaltyEffects[stat] = (penaltyEffects[stat] || 0) + totalPenalty;
             }
         } else if (!isBurnout) {
             recapText = 'You finished the round with all stats in a good place. Great job maintaining balance!';
@@ -1330,7 +1332,7 @@
         let fullRecap = `All stats naturally decay by ${-decayAmount} points each round.\n\n` + (burnoutText ? burnoutText + '\n\n' : '') + recapText;
         
         let alexText = "";
-        if (stats.alexHealth > 0) {
+        if (stats.alexHealth > 2) {
             alexText = "Your positive choices are being a good influence on Alex.";
         } else if (stats.alexHealth < 0) {
             alexText = "Alex is being negatively affected by the risky situations you're involved in. This is straining your friendship.";
@@ -1380,7 +1382,7 @@
 
         popupEffectsContainer.innerHTML = '';
         for (const stat in effects) {
-            if (effects.hasOwnProperty(stat)) {
+            if (effects.hasOwnProperty(stat) && statInfo[stat]) {
                 const value = effects[stat];
                 if (value === 0) continue;
 
@@ -1417,7 +1419,7 @@
     function showStatChangeFeedback(effects) {
         let delay = 0;
         for (const stat in effects) {
-            if (effects.hasOwnProperty(stat)) {
+            if (effects.hasOwnProperty(stat) && stat !== 'alexEffect') {
                 const value = effects[stat];
                 if (value === 0) continue;
                 
@@ -1521,67 +1523,51 @@
         uiContainer.classList.add('hidden');
         reportCardContainer.innerHTML = ''; 
         
-        let passing = true;
+        let personalPassing = true;
         for (const stat in stats) {
             if (stat === 'flags' || stat === 'alexHealth') continue;
-            if (stats[stat] < 70) passing = false;
+            if (stats[stat] < 70) personalPassing = false; // Pass mark back to 70
         }
+        const alexPassing = stats.alexHealth > 2;
 
         endPlayerName.textContent = `Report for: ${playerName}`;
 
         let resultHTML = '';
+
         if (stats.flags.cheatedOnEssay) {
             endTitle.textContent = "A Hollow Victory...";
-            resultHTML = `<div class="text-center text-red-700 font-bold p-4 bg-red-100 rounded-lg">OVERALL RESULT: FAILED</div>`;
-            reportCardContainer.innerHTML += resultHTML;
-            const specialMessage = document.createElement('p');
-            specialMessage.className = 'text-center text-red-600 font-bold p-4 bg-red-100 rounded-lg mt-4';
-            specialMessage.textContent = "You were caught for plagiarism on your final essay. You automatically failed the class, and your success this semester feels meaningless.";
-            reportCardContainer.appendChild(specialMessage);
-        } else if (passing) {
+            resultHTML = `<div class="text-center text-red-700 font-bold p-4 bg-red-100 rounded-lg">OVERALL RESULT: FAILED</div><p class="text-center text-red-600 mt-2">You were caught for plagiarism on your final essay and failed the class automatically.</p>`;
+        } else if (personalPassing && alexPassing) {
             endTitle.textContent = "Congratulations!";
-            resultHTML = `<div class="text-center text-green-700 font-bold p-4 bg-green-100 rounded-lg">OVERALL RESULT: PASSED</div>`;
-            reportCardContainer.innerHTML += resultHTML;
+            resultHTML = `<div class="text-center text-green-700 font-bold p-4 bg-green-100 rounded-lg">OVERALL RESULT: PASSED</div><p class="text-center text-green-600 mt-2">You successfully balanced your life and supported your friend. Well done!</p>`;
+        } else if (personalPassing && !alexPassing) {
+            endTitle.textContent = "A Lonely Success...";
+            resultHTML = `<div class="text-center text-yellow-700 font-bold p-4 bg-yellow-100 rounded-lg">OVERALL RESULT: FAILED</div><p class="text-center text-yellow-600 mt-2">You managed your own life, but you failed as a friend. Alex is not in a good place because of your choices, and true success includes the well-being of those you care about.</p>`;
         } else {
             endTitle.textContent = "The Semester Was a Struggle...";
-            resultHTML = `<div class="text-center text-red-700 font-bold p-4 bg-red-100 rounded-lg">OVERALL RESULT: FAILED</div>`;
-            reportCardContainer.innerHTML += resultHTML;
+            resultHTML = `<div class="text-center text-red-700 font-bold p-4 bg-red-100 rounded-lg">OVERALL RESULT: FAILED</div><p class="text-center text-red-600 mt-2">You couldn't maintain balance, and one or more areas of your life fell apart.</p>`;
         }
+        reportCardContainer.innerHTML += resultHTML;
 
         for (const stat in statInfo) {
             const finalScore = Math.round(stats[stat]);
             let analysisText = '';
             
             if (stat === 'mentalHealth') {
-                if (finalScore >= 70) {
-                    analysisText = 'This was your core strength. Strong Mental Health gave you the resilience to handle academic pressure and navigate social challenges effectively.';
-                } else {
-                    analysisText = 'Low Mental Health was your biggest challenge. This made it harder to study (affecting Academics), engage with friends (Peer Social), and communicate openly with family (Family Social).';
-                }
+                if (finalScore >= 70) analysisText = 'This was your core strength. Strong Mental Health gave you the resilience to handle academic pressure and navigate social challenges effectively.';
+                else analysisText = 'Low Mental Health was your biggest challenge. This made it harder to study (affecting Academics), engage with friends (Peer Social), and communicate openly with family (Family Social).';
             } else if (stat === 'peerSocial') {
-                if (finalScore >= 70) {
-                    analysisText = 'You built a strong social circle! These positive relationships provided crucial support for your Mental Health, especially during stressful times like midterms.';
-                } else {
-                    analysisText = 'Feeling isolated from peers put a strain on your Mental Health. Without a strong support system at school, academic and family stress felt more overwhelming.';
-                }
+                if (finalScore >= 70) analysisText = 'You built a strong social circle! These positive relationships provided crucial support for your Mental Health, especially during stressful times like midterms.';
+                else analysisText = 'Feeling isolated from peers put a strain on your Mental Health. Without a strong support system at school, academic and family stress felt more overwhelming.';
             } else if (stat === 'familySocial') {
-                 if (finalScore >= 70) {
-                    analysisText = 'A trusting relationship at home was a great foundation. This stability buffered your Mental Health and gave you a safe space to decompress.';
-                } else {
-                    analysisText = 'Tension at home was a major source of stress, which directly lowered your Mental Health and made it difficult to focus on your schoolwork (Academics).';
-                }
+                 if (finalScore >= 70) analysisText = 'A trusting relationship at home was a great foundation. This stability buffered your Mental Health and gave you a safe space to decompress.';
+                else analysisText = 'Tension at home was a major source of stress, which directly lowered your Mental Health and made it difficult to focus on your schoolwork (Academics).';
             } else if (stat === 'academic') {
-                if (finalScore >= 70) {
-                    analysisText = 'You did well in your classes! This success boosted your confidence and positively impacted your Mental Health.';
-                } else {
-                    analysisText = `Struggling academically was a significant source of stress. This likely connects to your low ${stats.physicalHealth < 70 ? 'Physical Health' : 'Mental Health'}, as lack of sleep or high anxiety makes it hard to learn.`;
-                }
+                if (finalScore >= 70) analysisText = 'You did well in your classes! This success boosted your confidence and positively impacted your Mental Health.';
+                else analysisText = `Struggling academically was a significant source of stress. This likely connects to your low ${stats.physicalHealth < 70 ? 'Physical Health' : 'Mental Health'}, as lack of sleep or high anxiety makes it hard to learn.`;
             } else if (stat === 'physicalHealth') {
-                if (finalScore >= 70) {
-                    analysisText = 'Great job taking care of yourself! Getting enough sleep and exercise gave you the energy to succeed (Academics) and the resilience to manage stress (Mental Health).';
-                } else {
-                    analysisText = 'Not prioritizing sleep and well-being directly impacted your ability to focus in class (Academics) and manage your mood (Mental Health).';
-                }
+                if (finalScore >= 70) analysisText = 'Great job taking care of yourself! Getting enough sleep and exercise gave you the energy to succeed (Academics) and the resilience to manage stress (Mental Health).';
+                else analysisText = 'Not prioritizing sleep and well-being directly impacted your ability to focus in class (Academics) and manage your mood (Mental Health).';
             }
 
             const cardHTML = `
@@ -1599,11 +1585,11 @@
 
         let alexAnalysisText = '';
         if (stats.alexHealth > 2) {
-             alexAnalysisText = "Your positive choices and supportive friendship had a great influence on Alex. By managing your own stress and making healthy decisions, you created a stable and positive friendship that helped them navigate the semester too.";
+             alexAnalysisText = "You were a positive influence and a supportive friend to Alex. By managing your own stress and making healthy decisions together, you created a stable friendship that helped both of you navigate the semester.";
         } else if (stats.alexHealth <= -2) {
-             alexAnalysisText = "Your struggles and risky choices this semester had a severe negative impact on Alex. Being constantly drawn into stressful and dangerous situations ultimately led to them being sent away. This is a heavy consequence of the path you chose.";
+             alexAnalysisText = "Your struggles and risky choices had a severe negative impact on Alex. Being constantly drawn into stressful and dangerous situations ultimately led to them being sent away. This is a heavy consequence of the path you chose.";
         } else {
-            alexAnalysisText = "Your friendship with Alex remained stable, but there were moments where your choices put a strain on them. Remember that your actions always have a ripple effect on those closest to you.";
+            alexAnalysisText = "Your friendship with Alex was strained. While you didn't completely abandon them, your choices often put them in difficult positions. True success means lifting up your friends, not just getting by yourself.";
         }
 
 
