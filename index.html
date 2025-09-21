@@ -193,7 +193,7 @@
 </head>
 <body class="bg-gray-900 flex items-center justify-center h-screen">
 
-    <audio id="backgroundMusic" loop src="https://archive.org/download/Peaceful_Mind-Music_for_Video/Peaceful%20Mind-Music%20for%20Video.mp3"></audio>
+    <audio id="backgroundMusic" loop src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"></audio>
 
     <div id="gameContainer" class="game-container bg-black mx-auto">
         <img id="backgroundImage" class="background-image" src="" alt="Game Background">
@@ -846,8 +846,14 @@
     }
 
     function startGame() {
-        backgroundMusic.volume = 0.3; 
-        backgroundMusic.play();
+        const playPromise = backgroundMusic.play();
+        if (playPromise !== undefined) {
+            playPromise.catch(error => {
+                console.error("Audio playback was prevented by browser policy.");
+            });
+        }
+        backgroundMusic.volume = 0.3;
+        
         stats = {
             peerSocial: 70,
             familySocial: 70,
@@ -1294,7 +1300,7 @@
         let recapText = '';
         let burnoutText = '';
         
-        const decayAmount = -2; // Reduced decay
+        const decayAmount = -2; 
         for (const stat in statInfo) {
             penaltyEffects[stat] = (penaltyEffects[stat] || 0) + decayAmount;
         }
@@ -1308,7 +1314,7 @@
             }
         }
         if (isBurnout) {
-            const burnoutPenalty = -7; // Reduced burnout penalty
+            const burnoutPenalty = -7;
             burnoutText = `Your ${burnoutSource.join(', ')} is critically low, causing a burnout! This massive stress impacts everything. All other stats get an additional ${burnoutPenalty} penalty.`;
             for (const stat in statInfo) {
                 if (!burnoutSource.includes(statInfo[stat].name)) {
@@ -1319,11 +1325,11 @@
 
         let failingStats = [];
         for (const stat in statInfo) {
-            if (stats[stat] + (penaltyEffects[stat] || 0) < 70) { // Pass mark back to 70
+            if (stats[stat] + (penaltyEffects[stat] || 0) < 85) { // Pass mark is now 85
                 failingStats.push(statInfo[stat].name);
             }
         }
-        const stressPenaltyAmount = -3; // Reduced stress penalty
+        const stressPenaltyAmount = -3;
         if (failingStats.length > 0) {
             const totalPenalty = failingStats.length * stressPenaltyAmount;
             recapText = `Struggling in ${failingStats.join(', ')} is causing general stress, resulting in a ${totalPenalty} point penalty to all stats.`;
@@ -1531,7 +1537,7 @@
         let personalPassing = true;
         for (const stat in stats) {
             if (stat === 'flags' || stat === 'alexHealth') continue;
-            if (stats[stat] < 70) personalPassing = false; 
+            if (stats[stat] < 85) personalPassing = false; // Pass mark is 85
         }
         const alexPassing = stats.alexHealth > 2;
 
@@ -1559,19 +1565,19 @@
             let analysisText = '';
             
             if (stat === 'mentalHealth') {
-                if (finalScore >= 70) analysisText = 'This was your core strength. Strong Mental Health gave you the resilience to handle academic pressure and navigate social challenges effectively.';
+                if (finalScore >= 85) analysisText = 'This was your core strength. Strong Mental Health gave you the resilience to handle academic pressure and navigate social challenges effectively.';
                 else analysisText = 'Low Mental Health was your biggest challenge. This made it harder to study (affecting Academics), engage with friends (Peer Social), and communicate openly with family (Family Social).';
             } else if (stat === 'peerSocial') {
-                if (finalScore >= 70) analysisText = 'You built a strong social circle! These positive relationships provided crucial support for your Mental Health, especially during stressful times like midterms.';
+                if (finalScore >= 85) analysisText = 'You built a strong social circle! These positive relationships provided crucial support for your Mental Health, especially during stressful times like midterms.';
                 else analysisText = 'Feeling isolated from peers put a strain on your Mental Health. Without a strong support system at school, academic and family stress felt more overwhelming.';
             } else if (stat === 'familySocial') {
-                 if (finalScore >= 70) analysisText = 'A trusting relationship at home was a great foundation. This stability buffered your Mental Health and gave you a safe space to decompress.';
+                 if (finalScore >= 85) analysisText = 'A trusting relationship at home was a great foundation. This stability buffered your Mental Health and gave you a safe space to decompress.';
                 else analysisText = 'Tension at home was a major source of stress, which directly lowered your Mental Health and made it difficult to focus on your schoolwork (Academics).';
             } else if (stat === 'academic') {
-                if (finalScore >= 70) analysisText = 'You did well in your classes! This success boosted your confidence and positively impacted your Mental Health.';
-                else analysisText = `Struggling academically was a significant source of stress. This likely connects to your low ${stats.physicalHealth < 70 ? 'Physical Health' : 'Mental Health'}, as lack of sleep or high anxiety makes it hard to learn.`;
+                if (finalScore >= 85) analysisText = 'You did well in your classes! This success boosted your confidence and positively impacted your Mental Health.';
+                else analysisText = `Struggling academically was a significant source of stress. This likely connects to your low ${stats.physicalHealth < 85 ? 'Physical Health' : 'Mental Health'}, as lack of sleep or high anxiety makes it hard to learn.`;
             } else if (stat === 'physicalHealth') {
-                if (finalScore >= 70) analysisText = 'Great job taking care of yourself! Getting enough sleep and exercise gave you the energy to succeed (Academics) and the resilience to manage stress (Mental Health).';
+                if (finalScore >= 85) analysisText = 'Great job taking care of yourself! Getting enough sleep and exercise gave you the energy to succeed (Academics) and the resilience to manage stress (Mental Health).';
                 else analysisText = 'Not prioritizing sleep and well-being directly impacted your ability to focus in class (Academics) and manage your mood (Mental Health).';
             }
 
