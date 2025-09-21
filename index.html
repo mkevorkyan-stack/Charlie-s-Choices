@@ -845,14 +845,23 @@
         }
     }
 
-    function startGame() {
-        const playPromise = backgroundMusic.play();
+   function startGame() {
+        // Set volume BEFORE attempting to play
+        backgroundMusic.volume = 0.3; 
+    
+        // Attempt to play the music and handle any browser errors gracefully
+        let playPromise = backgroundMusic.play();
+    
         if (playPromise !== undefined) {
-            playPromise.catch(error => {
-                console.error("Audio playback was prevented by browser policy.");
+            playPromise.then(_ => {
+                // Autoplay started successfully! No action needed.
+                console.log("Music playback started.");
+            }).catch(error => {
+                // Autoplay was prevented by the browser.
+                console.error("Music playback was prevented by browser. User will need to interact again.");
+                // The music will not play, but the game will continue without errors.
             });
         }
-        backgroundMusic.volume = 0.3;
         
         stats = {
             peerSocial: 70,
@@ -871,6 +880,7 @@
         uiContainer.classList.remove('hidden');
         updateStatsUI();
         loadRound(currentRound);
+    }
     }
     
     function loadRound(roundIndex) {
@@ -1619,3 +1629,4 @@
 </script>
 </body>
 </html>
+
