@@ -432,7 +432,7 @@
                     speaker: 'Charlie', text: 'A party? I don\'t know...',
                     choices: [
                         { text: 'Agree to go.', effects: { peerSocial: 10 }, flag: 'agreedToParty', popup: { type: 'positive', header: 'Invitation Accepted!', why: 'You agreed to go to your first high school party!', bigPicture: 'Social events are a big part of the high school experience.', reward: '+10 Peer Social.'} },
-                        { text: 'Decline the invitation.', effects: { peerSocial: -10 }, popup: { type: 'negative', header: 'Heads-Up: Staying In', why: 'You turned down a chance to socialize.', bigPicture: 'It is okay to not want to go to parties, but it might make it harder to build friendships.', betterWay: 'Even if you can\'t go, you could say "Thanks for inviting me! Maybe next time."'}}
+                        { text: 'Decline the invitation.', effects: { peerSocial: -10 }, popup: { type: 'negative', header: 'Heads-Up: Staying In', why: 'You turned down a chance to socialize.', bigPicture: 'It is okay to not want to go to parties, but it might make it harder to build friendships.', betterWay: 'Even if you can\'t go, you could say "Thanks for inviting me! Maybe next time!"'} }
                     ]
                 },
                 { speaker: 'Narrator', text: 'At lunch, you overhear some classmates spreading a mean rumor about another student.', bg: backgrounds.hallway, sprite: sprites.charlie_neutral },
@@ -515,23 +515,26 @@
                         { text: 'Study for a few hours, then get a decent sleep.', effects: { academic: 10, physicalHealth: 5, mentalHealth: 5 }, popup: { type: 'positive', header: 'Smart Strategy', why: 'You balanced your need to study with your need for rest.', bigPicture: 'Good sleep is essential for academic performance and mental health.', reward: 'Boosts across the board.'} },
                     ]
                 },
-                { speaker: 'Classmate', text: 'Stressed? I\'ve got something that\'ll help you focus. My brother\'s "study pills". Want one?'},
+                { speaker: 'Alex', text: 'Stressed? I\'ve got something that\'ll help you focus. My brother\'s "study pills". Want one?'}, // Changed from Classmate to Alex
                 {
                     speaker: 'Narrator', text: 'The offer is tempting. You\'re exhausted and desperate.', sprite: sprites.charlie_stressed,
                     choices: [
                         { 
                             text: 'Take the pill.', 
                             effects: { academic: 20, physicalHealth: -30, mentalHealth: -15 }, 
+                            alexEffect: -1, // Added alexEffect for Alex's influence
                             popup: { type: 'negative', header: 'Heads-Up: Prescription Drug Misuse', why: 'Using someone else\'s prescription is a huge gamble. You don\'t know how it will affect you.', bigPicture: 'Misusing prescription stimulants is illegal, dangerous, and can lead to dependence. (CA Standard 1.8.A)', betterWay: 'Rely on proven, healthy study habits. Your health is worth more than a grade.' } 
                         },
                         { 
                             text: 'Refuse firmly. "No way, that stuff is dangerous."', 
                             effects: { mentalHealth: 15 }, 
+                            alexEffect: 1, // Added alexEffect for Alex's influence
                             popup: { type: 'positive', header: 'Skill Unlocked: Strong Refusal', why: 'You recognized a dangerous situation and responded with a strong, clear boundary.', bigPicture: 'Refusing drugs, especially from peers, is a critical skill for protecting your health.', reward: 'A big boost to your Mental Health.' },
                             requires: { stat: 'mentalHealth', value: 40 },
                             alternative: {
                                 text: 'Hesitate. "I don\'t know... that seems like a bad idea."',
                                 effects: { mentalHealth: -10 },
+                                alexEffect: -1, // Added alexEffect for Alex's influence
                                 popup: { type: 'negative', header: 'Heads-Up: Weak Refusal', why: 'Your low mental health made it hard to refuse confidently. The hesitation showed you were struggling.', bigPicture: 'When you\'re feeling down, you are more vulnerable to making risky decisions. Recognizing this is the first step to protecting yourself.', betterWay: 'Even a simple "No" is powerful. You don\'t need to justify it.' }
                             }
                         },
@@ -615,7 +618,7 @@
                     speaker: 'Charlie', text: 'They seem lonely.',
                     choices: [
                         { text: 'Invite them to go with your group.', effects: { peerSocial: 15, mentalHealth: 10 }, popup: { type: 'positive', header: 'Inclusivity Wins!', why: 'You went out of your way to include someone who might be feeling left out.', bigPicture: 'Small acts of social kindness can have a huge positive impact on a person\'s mental health and sense of belonging.', reward: 'A big boost to Peer Social and Mental Health.'} },
-                        { text: 'Look away and keep walking.', effects: { mentalHealth: -5 }, popup: { type: 'negative', header: 'Heads-Up: Missed Opportunity for Kindness', why: 'It felt too awkward to intervene, so you did nothing.', bigPicture: 'High school can be a lonely place for some. Being the person who reaches out is a powerful act of good character.', betterWay: 'A simple, "Hey, are you going to the dance on Saturday?" can open the door.'} },
+                        { text: 'Look away and keep walking.', effects: { mentalHealth: -5 }, popup: { type: 'negative', header: 'Heads-Up: Missed Opportunity for Kindness', why: 'It felt too awkward to intervene, so you did nothing.', bigPicture: 'High school can be a lonely place for some. Being the person who reaches out is a powerful act of good character.', betterWay: 'A simple, "Hey, are you okay?" can open the door.'} },
                     ]
                 }
             ],
@@ -738,23 +741,26 @@
                         { text: 'Just try to Google it and hope for the best.', effects: { academic: -5 }, popup: { type: 'negative', header: 'Heads-Up: Unreliable Info', why: 'The internet is full of information, but not all of it is accurate or helpful.', bigPicture: 'Relying on primary sources, like your teacher or textbook, is the best way to ensure you\'re learning the right material.', betterWay: 'Don\'t be afraid to ask for help. Teachers appreciate it when students advocate for their own learning.'} },
                     ]
                 },
-                { speaker: 'Classmate', text: 'Hey, I still have some of those "study pills" if you need one for the big test tomorrow. No charge.' },
+                { speaker: 'Alex', text: 'Hey, I still have some of those "study pills" if you need one for the big test tomorrow. No charge.' }, // Changed from Classmate to Alex
                 {
                     speaker: 'Charlie', text: 'The pressure is even higher than last time.',
                     choices: [
                         { 
                             text: 'Give in. "Okay, just one."', 
                             effects: { academic: 20, physicalHealth: -35, mentalHealth: -20 }, 
+                            alexEffect: -1, // Added alexEffect for Alex's influence
                             popup: { type: 'negative', header: 'Heads-Up: A Dangerous Crutch', why: 'You turned to a dangerous substance in a moment of weakness and high pressure.', bigPicture: 'Repeatedly using substances to cope with stress is a pathway to dependence and addiction.', betterWay: 'Trust in your own abilities and the hard work you\'ve put in.'} 
                         },
                         { 
                             text: 'Refuse. "I\'m gonna pass or fail on my own."', 
                             effects: { mentalHealth: 20, academic: 5 }, 
+                            alexEffect: 1, // Added alexEffect for Alex's influence
                             popup: { type: 'positive', header: 'Self-Reliance', why: 'You chose to trust yourself and your preparation instead of looking for a risky shortcut.', bigPicture: 'Having confidence in your own ability to handle stress is the ultimate coping skill.', reward: 'A massive boost to Mental Health.'},
                             requires: { stat: 'mentalHealth', value: 50 },
                             alternative: { 
                                 text: 'Just take the pill without thinking.', 
                                 effects: { academic: 20, physicalHealth: -40, mentalHealth: -25 }, 
+                                alexEffect: -2, // Added alexEffect for Alex's influence
                                 popup: { type: 'negative', header: 'Heads-Up: Downward Spiral', why: 'Your mental health is so low you didn\'t even have the energy to fight the bad choice. It felt inevitable.', bigPicture: 'When mental health is very low, our decision-making is severely impaired. This is a critical time to seek help from a trusted adult.', betterWay: 'Talk to a parent, teacher, or counselor. You don\'t have to handle this alone.' }
                             }
                         },
