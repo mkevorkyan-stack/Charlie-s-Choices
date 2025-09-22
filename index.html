@@ -549,7 +549,7 @@
                         { 
                             text: 'Take the pill.', 
                             effects: { academic: 30, physicalHealth: -24, mentalHealth: -15 }, 
-                            alexEffect: -2,
+                            alexEffect: -4,
                             popup: { type: 'negative', header: 'Heads-Up: Prescription Drug Misuse', why: 'Using someone else\'s prescription is a huge gamble with severe health costs.', bigPicture: 'Misusing prescription stimulants is illegal, dangerous, and can lead to dependence. (CA Standard 1.8.A)', betterWay: 'Rely on proven, healthy study habits. Your health is worth more than a grade.' } 
                         },
                         { 
@@ -579,8 +579,8 @@
                 {
                     speaker: 'Charlie', text: 'I\'m so tired, but I don\'t want to miss out.',
                     choices: [
-                        { text: 'Go to the party.', effects: { peerSocial: 15, physicalHealth: -9, mentalHealth: 5 }, alexEffect: 1, popup: { type: 'negative', header: 'Running on Empty', why: 'You\'re pushing your body when it needs to recover, but it was fun.', bigPicture: 'Ignoring your body\'s need for rest can weaken your immune system and increase stress.', betterWay: 'It\'s okay to miss out sometimes to take care of yourself.'} },
-                        { text: 'Politely decline and go home to rest.', effects: { physicalHealth: 15, mentalHealth: 10, peerSocial: -3 }, alexEffect: -1, popup: { type: 'positive', header: 'Self-Care FTW', why: 'You listened to your body and prioritized your well-being.', bigPicture: 'Recognizing your own limits and needs is a key part of managing your mental and physical health.', reward: 'Big boost to health stats.'} },
+                        { text: 'Go to the party.', effects: { peerSocial: 15, physicalHealth: -9, mentalHealth: 5 }, alexEffect: -1, popup: { type: 'negative', header: 'Running on Empty', why: 'You\'re pushing your body when it needs to recover, but it was fun.', bigPicture: 'Ignoring your body\'s need for rest can weaken your immune system and increase stress.', betterWay: 'It\'s okay to miss out sometimes to take care of yourself.'} },
+                        { text: 'Politely decline and go home to rest.', effects: { physicalHealth: 15, mentalHealth: 10, peerSocial: -3 }, alexEffect: 1, popup: { type: 'positive', header: 'Self-Care FTW', why: 'You listened to your body and prioritized your well-being.', bigPicture: 'Recognizing your own limits and needs is a key part of managing your mental and physical health.', reward: 'Big boost to health stats.'} },
                     ]
                 }
             ],
@@ -756,8 +756,8 @@
                 {
                     speaker: 'Charlie', text: 'Skipping class during finals week is a terrible idea... but they\'re right, I am burnt out.',
                     choices: [
-                        { text: 'Go with them.', effects: { peerSocial: 10, academic: -9, mentalHealth: 5, familySocial: -3 }, alexEffect: 1, popup: { type: 'negative', header: 'Heads-Up: Poor Timing', why: 'While taking a break is healthy, skipping class right before a final is a bad trade-off.', bigPicture: 'There are healthy and unhealthy ways to cope with stress. Missing obligations is an unhealthy one.', betterWay: 'Plan a fun destressing activity for *after* your last final.'} },
-                        { text: 'Stay in class. "I can\'t risk it, sorry!"', effects: { academic: 10, peerSocial: -3 }, alexEffect: -1, popup: { type: 'positive', header: 'Discipline', why: 'You made a tough but responsible choice, prioritizing your grades.', bigPicture: 'Delayed gratification—working hard now for a bigger payoff later—is a key indicator of future success.', reward: '+10 Academic.'} },
+                        { text: 'Go with them.', effects: { peerSocial: 10, academic: -9, mentalHealth: 5, familySocial: -3 }, alexEffect: -1, popup: { type: 'negative', header: 'Heads-Up: Poor Timing', why: 'While taking a break is healthy, skipping class right before a final is a bad trade-off.', bigPicture: 'There are healthy and unhealthy ways to cope with stress. Missing obligations is an unhealthy one.', betterWay: 'Plan a fun destressing activity for *after* your last final.'} },
+                        { text: 'Stay in class. "I can\'t risk it, sorry!"', effects: { academic: 10, peerSocial: -3 }, alexEffect: 1, popup: { type: 'positive', header: 'Discipline', why: 'You made a tough but responsible choice, prioritizing your grades.', bigPicture: 'Delayed gratification—working hard now for a bigger payoff later—is a key indicator of future success.', reward: '+10 Academic.'} },
                     ]
                 },
                 { speaker: 'Narrator', text: 'You\'re really struggling with a concept for your science final.', sprite: sprites.charlie_stressed },
@@ -775,7 +775,7 @@
                         { 
                             text: 'Give in. "Okay, just one."', 
                             effects: { academic: 25, physicalHealth: -24, mentalHealth: -15 }, 
-                            alexEffect: -2,
+                            alexEffect: -4,
                             popup: { type: 'negative', header: 'Heads-Up: A Dangerous Crutch', why: 'You turned to a dangerous substance in a moment of weakness and high pressure.', bigPicture: 'Repeatedly using substances to cope with stress is a pathway to dependence and addiction.', betterWay: 'Trust in your own abilities and the hard work you\'ve put in.'} 
                         },
                         { 
@@ -1619,6 +1619,7 @@
 </script>
 </body>
 </html>
+
 
 
 
